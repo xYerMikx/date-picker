@@ -1,0 +1,30 @@
+# Output and node modules
+/dist
+/node_modules
+
+# Environment
+.env
+.env.dev
+.env.root
+.env.root.dev
+.dev.env
+
+# trash
+.DS_Store
+.sass-cache
+.tmp
+.rvmrc
+.trashes
+
+# editor
+.vscode
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.settings/
+
+# Tests
+/coverage
+/.nyc_output
