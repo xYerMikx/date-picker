@@ -13,7 +13,7 @@ interface IProps {
 
 export const Input = ({ value, onChange }: IProps) => {
   const [isValid, setIsValid] = useState<boolean>(true)
-  const [isEmpty, setIsEmpty] = useState<boolean>(true)
+  const [isEmpty, setIsEmpty] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const changeInputDate = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value

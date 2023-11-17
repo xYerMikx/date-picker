@@ -1,11 +1,8 @@
-import { months } from "@/constants/months"
-
 export const getDateParts = (value: string) => {
-  const parts = value.split(".")
-  const monthIndex = +parts[1]
+  const parts = value.split(".").map(Number)
   return {
-    day: +parts[0],
-    month: months[monthIndex - 1],
-    year: +parts[2],
+    day: parts[0],
+    month: parts[1],
+    year: parts[2],
   }
 }
