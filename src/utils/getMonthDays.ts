@@ -1,82 +1,63 @@
 import { StartDays } from "@/constants/startDays"
+import { DateCell } from "@/types/interfaces"
 
-import { getDaysInMonth } from "./getDaysInMonth"
+export const getDaysInMonth = (year: number, month: number) =>
+  new Date(year, month, 0).getDate()
 
-const sundayWeekToMondayWeekDayMap: Record<number, number> = {
-  0: 6,
-  1: 0,
-  2: 1,
-  3: 2,
-  4: 3,
-  5: 4,
-  6: 5,
-}
+export const getCurrentMonthDays = (year: number, month: number, daysAmount: number) => {
+  const cells: DateCell[] = []
 
-export const getDayOfTheWeek = (date: Date, startOfWeek: StartDays) => {
-  const day = date.getDay()
-
-  return startOfWeek === StartDays.Sunday ? day : sundayWeekToMondayWeekDayMap[day]
-}
-export const getCurrentMonthDays = (
-  year: number,
-  month: number,
-  numberOfDays: number,
-) => {
-  const dateCells = []
-
-  for (let i = 1; i <= numberOfDays; i++) {
-    dateCells.push({
+  for (let i = 1; i <= daysAmount; i++) {
+    cells.push({
       year,
       month,
       date: i,
       type: "current",
     })
   }
-
-  return dateCells
+  return cells
 }
+
 export const getPrevMonthDays = (year: number, month: number, startOfWeek: StartDays) => {
-  const currentMonthFirstDay = new Date(year, month, 1)
-  const prevMonthCellsAmount = getDayOfTheWeek(currentMonthFirstDay, startOfWeek)
-
-  const daysAmountInPrevMonth = getDaysInMonth(year, month - 1)
-
-  const dateCells = []
-
-  const [cellYear, cellMonth] = month === 0 ? [year - 1, 11] : [year, month - 1]
-
-  for (let i = prevMonthCellsAmount - 1; i >= 0; i--) {
-    dateCells.push({
-      year: cellYear,
-      month: cellMonth,
-      date: daysAmountInPrevMonth - i,
+  const cells: DateCell[] = []
+  const prevMonth = month - 1
+  const firstDayOfCurrMonth = new Date(year, prevMonth, 1).getDay()
+  const prevMonthLastDay = new Date(year, prevMonth, 0).getDate()
+  const diff = startOfWeek === StartDays.Monday ? 1 : 0
+  const startingvalue = prevMonthLastDay - firstDayOfCurrMonth + diff + 1
+  for (let i = startingvalue; i <= prevMonthLastDay; i++) {
+    cells.push({
+      year,
+      month: prevMonth,
+      date: i,
       type: "prev",
     })
   }
-
-  return dateCells
+  return cells
 }
 
 export const getNextMonthDays = (year: number, month: number, startOfWeek: StartDays) => {
-  const currentMonthFirstDay = new Date(year, month, 1)
-  const prevMonthCellsAmount = getDayOfTheWeek(currentMonthFirstDay, startOfWeek)
-
-  const daysAmount = getDaysInMonth(year, month)
-
-  const nextMonthDays = 42 - daysAmount - prevMonthCellsAmount
-
-  const [cellYear, cellMonth] = month === 11 ? [year + 1, 0] : [year, month + 1]
-
-  const dateCells = []
-
-  for (let i = 1; i <= nextMonthDays; i++) {
-    dateCells.push({
-      year: cellYear,
-      month: cellMonth,
+  const cells: DateCell[] = []
+  const nextMonth = month + 1
+  const lastDayOfCurrMonth = new Date(year, month, 0).getDay()
+  const diff = 6 - lastDayOfCurrMonth
+  const nextDays = startOfWeek === StartDays.Monday ? diff + 1 : diff
+  for (let i = 1; i <= nextDays; i++) {
+    cells.push({
+      year,
+      month: nextMonth,
       date: i,
       type: "next",
     })
   }
+  return cells
+}
 
-  return dateCells
+export const getCalendarData = (year: number, month: number, startOfWeek: StartDays) => {
+  const daysInMonth = getDaysInMonth(year, month)
+  const currentDays = getCurrentMonthDays(year, month, daysInMonth)
+  const prevDays = getPrevMonthDays(year, month, startOfWeek)
+  const nextDays = getNextMonthDays(year, month, startOfWeek)
+
+  return [...prevDays, ...currentDays, ...nextDays]
 }
