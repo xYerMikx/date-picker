@@ -28,3 +28,5 @@
 # Tests
 /coverage
 /.nyc_output
+
+.yarn

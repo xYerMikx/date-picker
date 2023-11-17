@@ -29,8 +29,10 @@
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-themes": "^7.5.3",
     "@storybook/react": "^7.5.3",
     "@storybook/react-webpack5": "^7.5.3",
+    "@types/node": "^20.9.0",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@types/styled-components": "^5.1.30",
@@ -49,6 +51,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^8.0.0",
     "prettier": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -59,16 +62,18 @@
     "rollup-plugin-typescript": "^1.0.1",
     "storybook": "^7.5.3",
     "style-loader": "^3.3.3",
+    "styled-components": "^6.1.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
     "tslib": "^2.6.2",
-    "typescript": "^5.2.2",
-    "husky": "^8.0.0"
+    "typescript": "^5.2.2"
   },
   "resolutions": {
-    "jackspeak": "2.1.1"
+    "jackspeak": "2.3.5"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.1"
-  }
+  },
+  "packageManager": "yarn@4.0.2"
 }
