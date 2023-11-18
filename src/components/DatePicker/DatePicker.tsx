@@ -14,23 +14,19 @@ import { isWeekend } from "@/utils/isWeekend"
 
 import { CalendarContainer, Cell, CurrentDate } from "./styled"
 import { addLeadingZeros } from "@/utils/leadingZeros"
-import { DateCell } from "@/types/interfaces"
 
 export interface IDatePickerProps {
-  startOfWeek?: StartDays
-  value: string
+  startOfWeek: StartDays
 }
 
-export const DatePicker = ({
-  value,
-  startOfWeek = StartDays.Monday,
-}: IDatePickerProps) => {
-  const { day, month, year } = getDateParts(value)
-  const [inputDate, setInputDate] = useState<string>(value)
-  const changeInputDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputDate(e.target.value)
+export const DatePicker = ({ startOfWeek = StartDays.Monday }: IDatePickerProps) => {
+  const [inputDate, setInputDate] = useState<string>("18.11.2023")
+  const { day, month, year } = getDateParts(inputDate)
+  const [selectedDate, setSelectedDate] = useState<string>(inputDate)
+  const handleEnterPress = (inputValue: string) => {
+    setSelectedDate(inputValue)
+    setInputDate(inputValue)
   }
-  const [selectedDate, setSelectedDate] = useState<string | null>(inputDate)
   const setSelectedDateValue = (type: string, value: string) => () => {
     if (type === "current") {
       setSelectedDate(value)
@@ -43,7 +39,7 @@ export const DatePicker = ({
   return (
     <ErrorBoundary>
       <ThemeProvider theme={lightTheme}>
-        <Input onChange={changeInputDate} value={inputDate} />
+        <Input onPressEnter={handleEnterPress} value={selectedDate} />
         <div>
           <CurrentDate>{currentDate}</CurrentDate>
           <CalendarContainer>
@@ -63,7 +59,7 @@ export const DatePicker = ({
                   data-prev={isPrev}
                   data-next={isNext}
                   onClick={setSelectedDateValue(type, dateValue)}
-                  key={`${date}-${month}`}
+                  key={`${date}-${month}-${year}`}
                 >
                   {date}
                 </Cell>

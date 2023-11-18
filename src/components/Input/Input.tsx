@@ -1,4 +1,12 @@
-import React, { ChangeEvent, useRef, useState } from "react"
+import React, {
+  ChangeEvent,
+  Dispatch,
+  KeyboardEvent,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 
 import { validateInputDate } from "@/utils/validateInputDate"
 
@@ -8,32 +16,42 @@ import { Container, ErrorSpan, InputContainer, StyledInput } from "./styled"
 
 interface IProps {
   value: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onPressEnter: (value: string) => void
 }
 
-export const Input = ({ value, onChange }: IProps) => {
+export const Input = ({ value, onPressEnter }: IProps) => {
   const [isValid, setIsValid] = useState<boolean>(true)
   const [isEmpty, setIsEmpty] = useState<boolean>(false)
+  const [inputValue, setInputValue] = useState(value)
+
+  useEffect(() => {
+    setInputValue(value)
+  }, [value])
+
   const inputRef = useRef<HTMLInputElement>(null)
+  const inputValueRef = useRef<string>(value)
   const changeInputDate = (e: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value
-    onChange(e)
-    validateInputDate(inputValue, setIsValid, setIsEmpty)
+    const valueFromInput = e.target.value
+    setInputValue(valueFromInput)
+    inputValueRef.current = valueFromInput
+    validateInputDate(valueFromInput, setIsValid, setIsEmpty)
   }
 
-  const clearInput = (e: MouseEvent) => {
-    const event = {
-      target: {
-        value: "",
-      },
-    } as ChangeEvent<HTMLInputElement>
-    onChange(event)
+  const clearInput = () => {
+    setInputValue("")
     setIsEmpty(true)
     setIsValid(true)
   }
 
   const focusInput = () => {
     inputRef.current?.focus()
+  }
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault()
+      onPressEnter(inputValueRef.current)
+    }
   }
 
   return (
@@ -43,8 +61,9 @@ export const Input = ({ value, onChange }: IProps) => {
         <StyledInput
           ref={inputRef}
           data-isvalid={isValid}
-          value={value}
+          value={inputValue}
           onChange={changeInputDate}
+          onKeyDown={handleKeyDown}
           placeholder="dd.mm.yyyy"
         />
         {!isEmpty && <Cross onClick={clearInput} />}
