@@ -3,7 +3,10 @@ import styled from "styled-components"
 export const CalendarContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 390px;
+`
+
+export const Wrapper = styled.div`
+  width: 350px;
 `
 
 export const DaysContainer = styled.div``
@@ -35,8 +38,27 @@ export const Cell = styled.div`
   }
 `
 
-export const CurrentDate = styled.div`
+export const CurrentDateContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  margin: 20px 0;
+
+  & > p {
+    width: 200px;
+    text-align: center;
+  }
 `
+
+const Button = styled.button`
+  background: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s linear;
+  &:hover {
+    opacity: 0.35;
+  }
+`
+
+export const MonthButton = styled(Button)``
+export const YearButton = styled(Button)``
