@@ -1,3 +1,4 @@
+import { CellTypes } from "@/constants/cellTypes"
 import { StartDays } from "@/constants/startDays"
 import { DateCell } from "@/types/interfaces"
 
@@ -12,7 +13,7 @@ export const getCurrentMonthDays = (year: number, month: number, daysAmount: num
       year,
       month,
       date: i,
-      type: "current",
+      type: CellTypes.Current,
     })
   }
   return cells
@@ -30,7 +31,7 @@ export const getPrevMonthDays = (year: number, month: number, startOfWeek: Start
       year,
       month: prevMonth,
       date: i,
-      type: "prev",
+      type: CellTypes.Prev,
     })
   }
   return cells
@@ -47,7 +48,7 @@ export const getNextMonthDays = (year: number, month: number, startOfWeek: Start
       year,
       month: nextMonth,
       date: i,
-      type: "next",
+      type: CellTypes.Next,
     })
   }
   return cells

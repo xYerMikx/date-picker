@@ -19,6 +19,12 @@ export const Cell = styled.div`
   cursor: pointer;
   transition: all 0.3s linear;
 
+  &[data-isholiday="true"] {
+    color: ${(props) => props.theme.green};
+  }
+  &[data-isweekend="true"] {
+    color: ${(props) => props.theme.red};
+  }
   &[data-selected="false"] {
     &:hover {
       background-color: ${(props) => props.theme.bgColor};
@@ -28,9 +34,6 @@ export const Cell = styled.div`
   &[data-selected="true"] {
     background-color: ${(props) => props.theme.blue};
     color: ${(props) => props.theme.white};
-  }
-  &[data-isweekend="true"] {
-    color: ${(props) => props.theme.red};
   }
   &[data-prev="true"],
   &[data-next="true"] {
@@ -62,3 +65,5 @@ const Button = styled.button`
 
 export const MonthButton = styled(Button)``
 export const YearButton = styled(Button)``
+
+export const CurrentDate = styled.p``
