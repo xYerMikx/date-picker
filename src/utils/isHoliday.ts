@@ -1,3 +1,1 @@
-export const isHoliday = (date: string, holidays: string[]) => {
-  return holidays.includes(date)
-}
+export const isHoliday = (date: string, holidays: string[]) => holidays.includes(date)

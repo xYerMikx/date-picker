@@ -2,7 +2,7 @@ const commonTheme = {
   blue: "#2F80ED",
   white: "#FFFFFF",
   red: "#FC0313",
-  green: "#008000",
+  green: "#90EE90",
   black: "#000000",
   dark: "#333",
   gray: "#AAA",

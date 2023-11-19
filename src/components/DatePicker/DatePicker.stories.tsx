@@ -10,7 +10,9 @@ export default {
 
 export const DefaultDatePicker = {
   args: {
-    startOfWeek: StartDays.Sunday,
+    startOfWeek: StartDays.Monday,
     value: "18.11.2023",
+    includeWeekends: true,
+    includeHolidays: true,
   },
 }

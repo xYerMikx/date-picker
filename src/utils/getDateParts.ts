@@ -1,5 +1,5 @@
 export const getDateParts = (value: string) => {
-  const parts = value.split(".").map(Number)
+  const parts = value.split(".").map(Number) as number[]
   return {
     day: parts[0],
     month: parts[1],

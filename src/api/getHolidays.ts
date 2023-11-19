@@ -1,4 +1,5 @@
 import axios from "axios"
+
 export const getHolidays = async (year: number) => {
   let response
   const options = {

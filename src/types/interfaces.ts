@@ -1,4 +1,6 @@
 import { CellTypes } from "@/constants/cellTypes"
+import { StartDays } from "@/constants/startDays"
+import { MouseEventHandler } from "react"
 
 export interface DateCell {
   year: number
@@ -16,4 +18,23 @@ export interface IHolidayData {
   localName: string
   name: string
   type: string
+}
+
+export interface ICalendarProps {
+  startOfWeek: StartDays
+  dates: DateCell[]
+  selectedDate: string
+  holidays: string[]
+  setSelectedDateValue: (
+    type: CellTypes,
+    value: string,
+  ) => MouseEventHandler<HTMLDivElement> | undefined
+  includeWeekends: boolean
+  includeHolidays?: boolean
+  inputDate?: string
+  day?: number
+  year?: number
+  month?: number
+  renderInput?: () => JSX.Element
+  renderTodoList?: () => JSX.Element
 }
