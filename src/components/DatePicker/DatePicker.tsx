@@ -1,15 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useMemo, useState } from "react"
 import { ThemeProvider } from "styled-components"
 
 import { Calendar } from "@/components/Calendar/Calendar"
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary"
-import { StartDays } from "@/constants/startDays"
 import { lightTheme } from "@/constants/theme"
 import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { withLogic } from "@/hocs/withLogic"
 import { currentDate } from "@/utils/getCurrentDate"
 import { getDateParts } from "@/utils/getDateParts"
 import { getCalendarData } from "@/utils/getMonthDays"
+
+import { StartDays } from "../../constants/startDays"
 
 export interface IDatePickerProps {
   startOfWeek: StartDays

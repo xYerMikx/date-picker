@@ -1,6 +1,7 @@
 # Output and node modules
 /dist
 /node_modules
+storybook-static
 
 # Environment
 .env
@@ -28,5 +29,4 @@
 # Tests
 /coverage
 /.nyc_output
-
 .yarn
