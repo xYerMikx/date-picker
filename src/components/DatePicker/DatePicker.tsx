@@ -3,30 +3,29 @@ import { ThemeProvider } from "styled-components"
 
 import { Calendar } from "@/components/Calendar/Calendar"
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary"
-import { CellTypes } from "@/constants/cellTypes"
 import { StartDays } from "@/constants/startDays"
 import { lightTheme } from "@/constants/theme"
+import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { withLogic } from "@/hocs/withLogic"
 import { currentDate } from "@/utils/getCurrentDate"
-import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { getDateParts } from "@/utils/getDateParts"
 import { getCalendarData } from "@/utils/getMonthDays"
 
 export interface IDatePickerProps {
   startOfWeek: StartDays
-  min?: string
-  max?: string
   includeHolidays: boolean
   includeWeekends: boolean
+  value: string
 }
 
 export const DatePicker = ({
   startOfWeek = StartDays.Monday,
+  value,
   includeHolidays,
   includeWeekends,
 }: IDatePickerProps) => {
-  const [inputDate, setInputDate] = useState<string>(currentDate)
-  const [selectedDate, setSelectedDate] = useState<string>(inputDate)
+  const [inputDate, setInputDate] = useState<string>(value || currentDate)
+  const [selectedDate, setSelectedDate] = useState<string>(value || inputDate)
 
   const { day, month, year } = getDateParts(inputDate)
 
@@ -34,10 +33,6 @@ export const DatePicker = ({
     () => getCalendarData(year, month, startOfWeek),
     [year, month, startOfWeek],
   )
-
-  useEffect(() => {
-    setSelectedDate(inputDate)
-  }, [inputDate])
 
   const CalendarWithLogic = withLogic(Calendar, dates, day, month, year)
   const CalendarWithInputAndControls = withInputAndControlsLogic(

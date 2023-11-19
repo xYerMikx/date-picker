@@ -1,9 +1,10 @@
 import React from "react"
 
+import { ICalendarProps } from "@/types/interfaces"
+
 import CalendarBody from "../CalendarBody/CalendarBody"
 import { CalendarHeader } from "../CalendarHeader/CalendarHeader"
 import { CalendarContainer } from "./styled"
-import { ICalendarProps } from "@/types/interfaces"
 
 export const Calendar = ({
   startOfWeek,

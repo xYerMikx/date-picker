@@ -1,6 +1,7 @@
+import { MouseEventHandler } from "react"
+
 import { CellTypes } from "@/constants/cellTypes"
 import { StartDays } from "@/constants/startDays"
-import { MouseEventHandler } from "react"
 
 export interface DateCell {
   year: number

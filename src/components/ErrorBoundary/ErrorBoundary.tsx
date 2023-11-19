@@ -24,10 +24,10 @@ export class ErrorBoundary extends Component<IEBProps, IEBState> {
   }
 
   render() {
-    const { hasError } = this.state
+    const { hasError, error } = this.state
     const { children } = this.props
 
-    if (hasError) {
+    if (hasError || error) {
       return <h1>Opps, something went wrong!</h1>
     }
     return children

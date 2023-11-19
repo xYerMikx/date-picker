@@ -13,7 +13,7 @@ const getMonthDays = (
   type: CellTypes,
 ) => {
   const cells: DateCell[] = []
-  for (let i = startDay; i <= endDay; i++) {
+  for (let i = startDay; i <= endDay; i += 1) {
     cells.push({
       year,
       month,
@@ -28,7 +28,7 @@ export const getCalendarData = (year: number, month: number, startOfWeek: StartD
   const daysInMonth = getDaysInMonth(year, month)
   const currentDays = getMonthDays(year, month, 1, daysInMonth, CellTypes.Current)
 
-  //логика расчета предыдущих чисел заполнения
+  // логика расчета предыдущих чисел заполнения
   const prevMonth = month - 1
   const firstDayOfCurrMonth = new Date(year, prevMonth, 1).getDay()
   const diff =
@@ -48,7 +48,7 @@ export const getCalendarData = (year: number, month: number, startOfWeek: StartD
     CellTypes.Prev,
   )
 
-  //логика расчета следующих чисел заполнения
+  // логика расчета следующих чисел заполнения
   const nextMonth = month + 1
   const lastDayOfCurrMonth = new Date(year, month, 0).getDay()
   const nextDaysDiff = 7 - lastDayOfCurrMonth

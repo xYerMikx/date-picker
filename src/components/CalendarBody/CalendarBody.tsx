@@ -1,12 +1,12 @@
 import React from "react"
 
 import { CellTypes } from "@/constants/cellTypes"
+import { ICalendarProps } from "@/types/interfaces"
 import { isHoliday } from "@/utils/isHoliday"
 import { isWeekend } from "@/utils/isWeekend"
 import { addLeadingZeros } from "@/utils/leadingZeros"
 
 import { Cell } from "./styled"
-import { ICalendarProps } from "@/types/interfaces"
 
 const CalendarBody = ({
   dates,

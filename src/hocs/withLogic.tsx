@@ -1,11 +1,10 @@
-import React, { ComponentType, useEffect, useMemo, useState } from "react"
+import React, { ComponentType, useEffect, useState } from "react"
 
 import { getHolidays } from "@/api/getHolidays"
 import { DateCell, ICalendarProps, IHolidayData } from "@/types/interfaces"
 import { formatDateFromHolidays } from "@/utils/formatDate"
 import { getDateParts } from "@/utils/getDateParts"
 import { addLeadingZeros } from "@/utils/leadingZeros"
-import { getCalendarData } from "@/utils/getMonthDays"
 
 export function withLogic(
   Component: ComponentType<ICalendarProps>,
@@ -24,7 +23,7 @@ export function withLogic(
             const data = (await getHolidays(year)) as unknown as IHolidayData[]
             const datesArray = data.map(({ date }) => {
               const { day, month, year } = getDateParts(formatDateFromHolidays(date))
-              return addLeadingZeros(year!, month!, day!)
+              return addLeadingZeros(year, day, month)
             })
             setHolidays(datesArray)
           }
