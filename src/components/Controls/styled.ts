@@ -25,4 +25,6 @@ const Button = styled.button`
 export const MonthButton = styled(Button)``
 export const YearButton = styled(Button)``
 
-export const CurrentDate = styled.p``
+export const CurrentDate = styled.p`
+  cursor: pointer;
+`

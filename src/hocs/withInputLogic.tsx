@@ -6,6 +6,7 @@ import { Input } from "@/components/Input/Input"
 import { CellTypes } from "@/constants/cellTypes"
 import { ICalendarProps } from "@/types/interfaces"
 import { getDateParts } from "@/utils/getDateParts"
+import { addLeadingZeros } from "@/utils/leadingZeros"
 import { updateDate } from "@/utils/updateDate"
 
 const Wrapper = styled.div`
@@ -33,16 +34,20 @@ export function withInputAndControlsLogic(
       setInputDate(newDate)
     }
 
+    const setNewDate = (year: number, month: number) => {
+      const newDate = addLeadingZeros(year, month, day)
+      setSelectedDate(newDate)
+      setInputDate(newDate)
+    }
+
     return (
       <Wrapper>
         <Input onPressEnter={handleEnterPress} value={selectedDate} />
         <Controls
-          day={day}
           month={month}
           year={year}
           inputDate={inputDate}
-          setInputDate={setInputDate}
-          setSelectedDate={setSelectedDate}
+          setNewDate={setNewDate}
         />
         <Component {...props} setSelectedDateValue={setSelectedDateValue} />
       </Wrapper>
