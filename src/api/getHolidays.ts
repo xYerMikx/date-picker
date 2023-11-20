@@ -1,5 +1,7 @@
 import axios from "axios"
 
+import { IHolidayData } from "@/types/interfaces"
+
 export const getHolidays = async (year: number) => {
   let response
   const options = {
@@ -16,5 +18,5 @@ export const getHolidays = async (year: number) => {
   } catch (error) {
     console.error(error)
   }
-  return response?.data
+  return response?.data as unknown as IHolidayData[]
 }

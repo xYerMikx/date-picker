@@ -20,7 +20,7 @@ export function withLogic(
       if (includeHolidays) {
         const fetchData = async () => {
           if (year) {
-            const data = (await getHolidays(year)) as unknown as IHolidayData[]
+            const data = await getHolidays(year)
             const datesArray = data.map(({ date }) => {
               const { day, month, year } = getDateParts(formatDateFromHolidays(date))
               return addLeadingZeros(year, day, month)

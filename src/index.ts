@@ -1,3 +1,1 @@
-import { DatePicker } from "./components/DatePicker/DatePicker"
-
-export { DatePicker }
+export { DatePicker } from "@/components/DatePicker/DatePicker"

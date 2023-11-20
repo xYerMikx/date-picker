@@ -17,7 +17,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Cache Node.js modules
         uses: actions/cache@v3
@@ -28,6 +28,10 @@ jobs:
             ${{ runner.OS }}-yarn-
       - name: Install Yarn
         run: npm install -g yarn
+      - name: Corepack enable
+        run: corepack enable
+      - name: Set latest yarn version
+        run: yarn set version latest
       - name: Install Dependencies
         run: yarn install
 
