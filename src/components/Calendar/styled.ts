@@ -3,8 +3,8 @@ import styled from "styled-components"
 export const Cell = styled.div`
   width: 50px;
   text-align: center;
-  padding: 15px 0;
-  border-radius: 8px;
+  padding: ${(props) => props.theme.spacings.md} 0;
+  border-radius: ${(props) => props.theme.borderRadius};
   cursor: pointer;
   transition: all 0.3s linear;
 

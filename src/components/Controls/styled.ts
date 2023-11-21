@@ -4,7 +4,7 @@ export const CurrentDateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: ${(props) => props.theme.spacings.md} 0;
 
   & > p {
     width: 200px;

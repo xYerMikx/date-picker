@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   &[data-isseen="true"] {
     display: block;
   }
-  padding: 20px;
+  padding: ${(props) => props.theme.spacings.lg};
 `
 
 export const StyledP = styled.p``
@@ -53,6 +53,6 @@ export const YearButton = styled.button`
 
 export const Container = styled.div`
   display: flex;
-  gap: 10px;
+  gap: ${(props) => props.theme.spacings.sm};
   flex-wrap: wrap;
 `

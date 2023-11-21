@@ -1,6 +1,7 @@
 import { StartDays } from "@/constants/startDays"
 
 import { DatePicker } from "./DatePicker"
+import { Themes } from "@/constants/theme"
 
 export default {
   title: "DatePicker",
@@ -13,5 +14,6 @@ export const DefaultDatePicker = {
     startOfWeek: StartDays.Monday,
     includeWeekends: true,
     includeHolidays: true,
+    theme: Themes.Dark,
   },
 }

@@ -29,7 +29,7 @@ export const InputContainer = styled.div`
 
 export const StyledInput = styled.input`
   position: relative;
-  padding: 8px 25px;
+  padding: ${(props) => props.theme.spacings.sm} ${(props) => props.theme.spacings.xl};
   color: ${(props) => props.theme.black};
   border-radius: ${(props) => props.theme.borderRadius};
   border: 1px solid ${(props) => props.theme.lightGray};
