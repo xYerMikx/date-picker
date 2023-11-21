@@ -4,9 +4,8 @@ import { IHolidayData } from "@/types/interfaces"
 
 export const getHolidays = async (year: number) => {
   let response
+  const url = `https://${process.env.HOLIDAY_API_URL}/${year}/BY`
   const options = {
-    method: "GET",
-    url: `https://${process.env.HOLIDAY_API_URL}/${year}/BY`,
     headers: {
       "X-RapidAPI-Key": process.env.HOLIDAY_API_KEY,
       "X-RapidAPI-Host": process.env.HOLIDAY_API_URL,
@@ -14,7 +13,7 @@ export const getHolidays = async (year: number) => {
   }
 
   try {
-    response = await axios.request(options)
+    response = await axios.get(url, options)
   } catch (error) {
     console.error(error)
   }

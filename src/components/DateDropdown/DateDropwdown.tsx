@@ -8,8 +8,8 @@ import { Button, Container, StyledP, Wrapper, YearButton } from "./styled"
 export interface IDateDropdownProps {
   isChoosingMonth: boolean
   isChoosingYear: boolean
-  handleClick: () => void
-  handleMonthClick: () => void
+  handleClick: VoidFunction
+  handleMonthClick: VoidFunction
   currentMonth: number
   currentYear: number
   setNewDate: (year: number, month: number) => void
@@ -27,7 +27,7 @@ export const DateDropwdown = ({
   const [month, setMonth] = useState(currentMonth)
   const [year, setYear] = useState(currentYear)
 
-  const handleMonthClickChange = () => (e: MouseEvent<HTMLButtonElement>) => {
+  const handleMonthClickChange = (e: MouseEvent<HTMLButtonElement>) => {
     const newMonth = shortMonths.indexOf(e.currentTarget.innerText) + 1
     setMonth(newMonth)
     setNewDate(year, newMonth)
@@ -51,7 +51,7 @@ export const DateDropwdown = ({
                 <Button
                   key={shortMonth}
                   data-current={isCurrentMonth}
-                  onClick={handleMonthClickChange()}
+                  onClick={handleMonthClickChange}
                 >
                   {shortMonth}
                 </Button>
