@@ -3,30 +3,30 @@ import styled from "styled-components"
 export const Cell = styled.div`
   width: 50px;
   text-align: center;
-  padding: ${(props) => props.theme.spacings.md} 0;
-  border-radius: ${(props) => props.theme.borderRadius};
+  padding: ${({ theme }) => theme.spacings.md} 0;
+  border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   transition: all 0.3s linear;
 
   &[data-isholiday="true"] {
-    color: ${(props) => props.theme.green};
+    color: ${({ theme }) => theme.green};
   }
   &[data-isweekend="true"] {
-    color: ${(props) => props.theme.red};
+    color: ${({ theme }) => theme.red};
   }
   &[data-selected="false"] {
     &:hover {
-      background-color: ${(props) => props.theme.bgColor};
+      background-color: ${({ theme }) => theme.bgColor};
     }
   }
 
   &[data-selected="true"] {
-    background-color: ${(props) => props.theme.blue};
-    color: ${(props) => props.theme.white};
+    background-color: ${({ theme }) => theme.blue};
+    color: ${({ theme }) => theme.white};
   }
   &[data-prev="true"],
   &[data-next="true"] {
-    color: ${(props) => props.theme.lightGray};
+    color: ${({ theme }) => theme.lightGray};
   }
 `
 

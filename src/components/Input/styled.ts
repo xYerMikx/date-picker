@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
 export const ErrorSpan = styled.span`
-  color: ${(props) => props.theme.red};
-  font-size: ${(props) => props.theme.fontSize.sm};
+  color: ${({ theme }) => theme.red};
+  font-size: ${({ theme }) => theme.fontSize.sm};
 `
 
 export const Container = styled.div`
@@ -29,15 +29,15 @@ export const InputContainer = styled.div`
 
 export const StyledInput = styled.input`
   position: relative;
-  padding: ${(props) => props.theme.spacings.sm} ${(props) => props.theme.spacings.xl};
-  color: ${(props) => props.theme.black};
-  border-radius: ${(props) => props.theme.borderRadius};
-  border: 1px solid ${(props) => props.theme.lightGray};
+  padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xl};
+  color: ${({ theme }) => theme.black};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  border: 1px solid ${({ theme }) => theme.lightGray};
   &:focus {
-    outline: 1px solid ${(props) => props.theme.dark};
+    outline: 1px solid ${({ theme }) => theme.dark};
   }
 
   &[data-isvalid="false"] {
-    outline: 1px solid ${(props) => props.theme.red};
+    outline: 1px solid ${({ theme }) => theme.red};
   }
 `
