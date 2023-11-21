@@ -46,7 +46,7 @@
     "babel-preset-react-app": "^10.0.1",
     "css-loader": "^6.8.1",
     "dotenv": "^16.3.1",
-    "eslint": "^8.0.0",
+    "eslint": "^8.54.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^9.0.0",
@@ -75,13 +75,18 @@
     "typescript": "5.2.2"
   },
   "resolutions": {
-    "jackspeak": "2.3.5",
-    "strip-ansi": "^6.0.1"
+    "jackspeak": "2.3.5"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.1"
   },
-  "packageManager": "yarn@1.22.21"
+  "packageManager": "yarn@1.22.21",
+  "dependencies": {
+    "jackspeak": "2.3.6",
+    "strip-ansi": "^6.0.1",
+    "string-width": "^4.2.2",
+    "wrap-ansi": "^7.0.0"
+  }
 }
