@@ -1,7 +1,7 @@
 import { StartDays } from "@/constants/startDays"
+import { Themes } from "@/constants/theme"
 
 import { DatePicker } from "./DatePicker"
-import { Themes } from "@/constants/theme"
 
 export default {
   title: "DatePicker",
