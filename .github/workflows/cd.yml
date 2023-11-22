@@ -1,0 +1,40 @@
+name: CD
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "check out git repo"
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.yarn
+          key: ${{ runner.OS }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-
+      - name: Install Yarn
+        run: npm install -g yarn
+      - name: Enable corepack
+        run: corepack enable
+      - name: Upgrade yarn
+        run: yarn set version berry
+      - name: Install Dependencies
+        run: yarn install
+      - name: Run lint
+        run: yarn lint
+      - name: Build
+        run: yarn build
+      - name: Deploy storybook
+        run: yarn deploy-storybook
