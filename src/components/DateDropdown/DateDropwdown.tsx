@@ -29,9 +29,9 @@ export const DateDropwdown = ({
 
   const handleMonthClickChange = (e: MouseEvent<HTMLButtonElement>) => {
     const newMonth = shortMonths.indexOf(e.currentTarget.innerText) + 1
+    handleMonthClick()
     setMonth(newMonth)
     setNewDate(year, newMonth)
-    handleMonthClick()
   }
   const handleYearClickChange = () => (e: MouseEvent<HTMLButtonElement>) => {
     const newYear = +e.currentTarget.innerText
@@ -39,17 +39,20 @@ export const DateDropwdown = ({
     setYear(newYear)
   }
   return (
-    <Wrapper data-isseen={isChoosingMonth || isChoosingYear}>
+    <Wrapper data-testid="dropdown-date" data-isseen={isChoosingMonth || isChoosingYear}>
       {isChoosingMonth && (
         <>
-          <YearButton onClick={handleClick}>{year}</YearButton>
+          <YearButton data-testid="change-year-button" onClick={handleClick}>
+            {year}
+          </YearButton>
           <StyledP>Choose month</StyledP>
-          <Container>
+          <Container data-testid="dates-container">
             {shortMonths.map((shortMonth) => {
               const isCurrentMonth = shortMonth === shortMonths[month - 1]
               return (
                 <Button
                   key={shortMonth}
+                  data-testid={shortMonth}
                   data-current={isCurrentMonth}
                   onClick={handleMonthClickChange}
                 >
@@ -69,6 +72,7 @@ export const DateDropwdown = ({
               return (
                 <Button
                   key={el}
+                  data-testid={el}
                   data-current={isCurrentYear}
                   onClick={handleYearClickChange()}
                 >

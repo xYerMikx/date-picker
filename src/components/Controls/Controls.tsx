@@ -17,7 +17,7 @@ export const Controls = ({ inputDate, month, year, setNewDate }: IControlsProps)
   const [isChoosingYear, setIsChoosingYear] = useState(false)
 
   const handleDateClick = () => {
-    setIsChoosingMonth(!isChoosingMonth)
+    setIsChoosingMonth((prev) => !prev)
   }
 
   const handleChoosingYearClick = () => {
@@ -32,7 +32,9 @@ export const Controls = ({ inputDate, month, year, setNewDate }: IControlsProps)
   }
   return (
     <CurrentDateContainer>
-      <CurrentDate onClick={handleDateClick}>{formatDate(inputDate)}</CurrentDate>
+      <CurrentDate onClick={handleDateClick} data-testid="current-date">
+        {formatDate(inputDate)}
+      </CurrentDate>
       <DateDropwdown
         setNewDate={setNewDate}
         currentYear={year}

@@ -42,7 +42,7 @@ export function withInputAndControlsLogic(
 
     return (
       <Wrapper>
-        <Input onPressEnter={handleEnterPress} value={selectedDate} />
+        <Input data-testid="bruh" onPressEnter={handleEnterPress} value={selectedDate} />
         <Controls
           month={month}
           year={year}
