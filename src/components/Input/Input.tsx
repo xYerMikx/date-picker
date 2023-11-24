@@ -59,6 +59,7 @@ export const Input = ({ value, onPressEnter }: IProps) => {
       <InputContainer>
         <Calendar onClick={focusInput} />
         <StyledInput
+          data-testid="input"
           ref={inputRef}
           data-isvalid={isValid}
           value={inputValue}

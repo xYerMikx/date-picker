@@ -37,3 +37,8 @@ export interface ICalendarProps {
   renderInput?: () => JSX.Element
   renderTodoList?: () => JSX.Element
 }
+export interface ITodo {
+  id: number
+  description: string
+  todoDate: string
+}
