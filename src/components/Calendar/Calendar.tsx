@@ -11,8 +11,13 @@ export const Calendar = ({
   dates,
   selectedDate,
   holidays,
+  fromDate,
+  toDate,
   setSelectedDateValue,
   includeWeekends,
+  handleMouseUp,
+  handleMouseDown,
+  handleMouseEnter,
 }: ICalendarProps) => (
   <CalendarContainer>
     <CalendarHeader startOfWeek={startOfWeek} />
@@ -22,7 +27,12 @@ export const Calendar = ({
       holidays={holidays}
       includeWeekends={includeWeekends}
       selectedDate={selectedDate}
+      fromDate={fromDate}
+      toDate={toDate}
       setSelectedDateValue={setSelectedDateValue}
+      handleMouseDown={handleMouseDown}
+      handleMouseUp={handleMouseUp}
+      handleMouseEnter={handleMouseEnter}
     />
   </CalendarContainer>
 )

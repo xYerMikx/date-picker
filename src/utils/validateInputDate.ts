@@ -19,3 +19,13 @@ export const validateInputDate = (
     setIsEmpty(inputValue.length < 1)
   }
 }
+
+export const isValidRange = (fromDate: string, toDate: string) => {
+  const [fromDay, fromMonth, fromYear] = fromDate.split(".").map(Number)
+  const [toDay, toMonth, toYear] = toDate.split(".").map(Number)
+
+  const from = new Date(fromYear, fromMonth - 1, fromDay)
+  const to = new Date(toYear, toMonth - 1, toDay)
+
+  return from < to
+}

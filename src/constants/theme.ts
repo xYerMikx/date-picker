@@ -15,6 +15,7 @@ const commonTheme = {
     lg: "20px",
     xl: "25px",
   },
+  lightBlue: "#2F80ED1A",
 }
 export const lightTheme = {
   ...commonTheme,
