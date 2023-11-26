@@ -20,6 +20,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "rollup.config.mjs"],
+  "include": ["src/**/*", "rollup.config.mjs", "jest.config.ts"],
   "exclude": ["node_modules", "dist", "storybook-static"]
 }

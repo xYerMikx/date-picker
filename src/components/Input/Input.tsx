@@ -1,12 +1,4 @@
-import React, {
-  ChangeEvent,
-  Dispatch,
-  KeyboardEvent,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import React, { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react"
 
 import { validateInputDate } from "@/utils/validateInputDate"
 
@@ -17,9 +9,10 @@ import { Container, ErrorSpan, InputContainer, StyledInput } from "./styled"
 interface IProps {
   value: string
   onPressEnter: (value: string) => void
+  testId?: string
 }
 
-export const Input = ({ value, onPressEnter }: IProps) => {
+export const Input = ({ value, onPressEnter, testId }: IProps) => {
   const [isValid, setIsValid] = useState<boolean>(true)
   const [isEmpty, setIsEmpty] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState(value)
@@ -59,6 +52,7 @@ export const Input = ({ value, onPressEnter }: IProps) => {
       <InputContainer>
         <Calendar onClick={focusInput} />
         <StyledInput
+          data-testid={testId}
           ref={inputRef}
           data-isvalid={isValid}
           value={inputValue}
@@ -71,4 +65,8 @@ export const Input = ({ value, onPressEnter }: IProps) => {
       {!isValid && <ErrorSpan>Write date in dd.mm.yyyy or write valid date</ErrorSpan>}
     </Container>
   )
+}
+
+Input.defaultProps = {
+  testId: "input",
 }

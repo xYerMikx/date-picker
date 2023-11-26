@@ -40,3 +40,8 @@ export interface ICalendarProps {
   fromDate?: string
   toDate?: string
 }
+
+export interface IDateProps {
+  month: number
+  year: number
+}

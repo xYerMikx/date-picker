@@ -29,3 +29,16 @@ export const isValidRange = (fromDate: string, toDate: string) => {
 
   return from < to
 }
+
+export const validateEnterPress = (
+  setToDate: Dispatch<SetStateAction<string>>,
+  setError: Dispatch<SetStateAction<string>>,
+  fromDate: string,
+  toDate: string,
+) => {
+  if (isValidRange(fromDate, toDate)) {
+    setToDate(toDate)
+  } else {
+    setError("From date should be less than to date")
+  }
+}

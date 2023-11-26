@@ -6,9 +6,9 @@ import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary"
 import { StartDays } from "@/constants/startDays"
 import { darkTheme, lightTheme } from "@/constants/theme"
 import { Themes } from "@/constants/theme"
-import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { withLogic } from "@/hocs/withLogic"
 import withRangeLogic from "@/hocs/withRangeLogic"
+import { IDateProps } from "@/types/interfaces"
 import { currentDate } from "@/utils/getCurrentDate"
 import { getDateParts } from "@/utils/getDateParts"
 import { getCalendarData } from "@/utils/getMonthDays"
@@ -33,12 +33,16 @@ export const RangePicker = ({
   const [fromDate, setFromDate] = useState<string>(fromValue || "01.01.2023")
   const [toDate, setToDate] = useState<string>(toValue || "05.01.2023")
   const currentTheme = theme === Themes.Light ? lightTheme : darkTheme
-
   const { day, month, year } = getDateParts(currentDate)
 
+  const [currDate, setCurrDate] = useState<IDateProps>({
+    month,
+    year,
+  })
+
   const dates = useMemo(
-    () => getCalendarData(year, month, startOfWeek),
-    [year, month, startOfWeek],
+    () => getCalendarData(currDate.year, currDate.month, startOfWeek),
+    [currDate.year, currDate.month, startOfWeek],
   )
 
   const CalendarWithLogic = withLogic(Calendar, dates, day, month, year)
@@ -48,6 +52,8 @@ export const RangePicker = ({
     toDate,
     setFromDate,
     setToDate,
+    currDate,
+    setCurrDate,
   )
 
   return (
