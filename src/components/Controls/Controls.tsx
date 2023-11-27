@@ -37,7 +37,6 @@ export const Controls = ({ inputDate, month, year, setNewDate }: IControlsProps)
         setNewDate={setNewDate}
         currentYear={year}
         currentMonth={month}
-        isChoosingMonth={isChoosingMonth}
         handleClick={handleChoosingYearClick}
         handleMonthClick={handleDateClick}
         isChoosingYear={isChoosingYear}
