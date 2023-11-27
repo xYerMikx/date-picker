@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react"
+import React, { Dispatch, MouseEvent, SetStateAction, useState } from "react"
 
 import { shortMonths } from "@/constants/months"
 import { years } from "@/constants/years"
@@ -6,7 +6,6 @@ import { years } from "@/constants/years"
 import { Button, Container, StyledP, Wrapper, YearButton } from "./styled"
 
 export interface IDateDropdownProps {
-  isChoosingMonth: boolean
   isChoosingYear: boolean
   handleClick: VoidFunction
   handleMonthClick: VoidFunction
@@ -16,7 +15,6 @@ export interface IDateDropdownProps {
 }
 
 export const DateDropwdown = ({
-  isChoosingMonth,
   isChoosingYear,
   handleClick,
   handleMonthClick,
@@ -24,8 +22,8 @@ export const DateDropwdown = ({
   currentYear,
   setNewDate,
 }: IDateDropdownProps) => {
-  const [month, setMonth] = useState(currentMonth)
-  const [year, setYear] = useState(currentYear)
+  const [month, setMonth] = useState<number>(currentMonth)
+  const [year, setYear] = useState<number>(currentYear)
 
   const handleMonthClickChange = (e: MouseEvent<HTMLButtonElement>) => {
     const newMonth = shortMonths.indexOf(e.currentTarget.innerText) + 1
@@ -39,8 +37,8 @@ export const DateDropwdown = ({
     setYear(newYear)
   }
   return (
-    <Wrapper data-isseen={isChoosingMonth || isChoosingYear}>
-      {isChoosingMonth && (
+    <Wrapper>
+      {!isChoosingYear ? (
         <>
           <YearButton onClick={handleClick}>{year}</YearButton>
           <StyledP>Choose month</StyledP>
@@ -59,8 +57,7 @@ export const DateDropwdown = ({
             })}
           </Container>
         </>
-      )}
-      {isChoosingYear && (
+      ) : (
         <>
           <StyledP>Choosing year</StyledP>
           <Container>
