@@ -32,7 +32,6 @@ export const StyledInput = styled.input`
   padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xl};
   color: ${({ theme }) => theme.black};
   border-radius: ${({ theme }) => theme.borderRadius};
-
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.lightGray};
   &:focus {
     outline: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.dark};

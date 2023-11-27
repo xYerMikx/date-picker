@@ -15,9 +15,7 @@ export const Button = styled.button`
   border: none;
   width: 50px;
   height: 50px;
-
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.blue};
-
   border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   transition: all 0.2s linear;
