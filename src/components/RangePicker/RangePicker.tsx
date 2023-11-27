@@ -30,8 +30,8 @@ export const RangePicker = ({
   includeWeekends,
   theme = Themes.Dark,
 }: IDatePickerProps) => {
-  const [fromDate, setFromDate] = useState<string>(fromValue || "01.01.2023")
-  const [toDate, setToDate] = useState<string>(toValue || "05.01.2023")
+  const [fromDate, setFromDate] = useState(fromValue || "01.01.2023")
+  const [toDate, setToDate] = useState(toValue || "05.01.2023")
   const currentTheme = theme === Themes.Light ? lightTheme : darkTheme
   const { day, month, year } = getDateParts(currentDate)
 

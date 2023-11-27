@@ -27,8 +27,8 @@ export const DatePicker = ({
   includeWeekends,
   theme = Themes.Dark,
 }: IDatePickerProps) => {
-  const [inputDate, setInputDate] = useState<string>(value || currentDate)
-  const [selectedDate, setSelectedDate] = useState<string>(value || inputDate)
+  const [inputDate, setInputDate] = useState(value || currentDate)
+  const [selectedDate, setSelectedDate] = useState(value || inputDate)
   const currentTheme = theme === Themes.Light ? lightTheme : darkTheme
 
   const { day, month, year } = getDateParts(inputDate)

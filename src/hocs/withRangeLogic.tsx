@@ -23,8 +23,8 @@ export default function withRangeLogic<T>(
   setCurrDate: Dispatch<SetStateAction<IDateProps>>,
 ) {
   return (props: T) => {
-    const [isSelecting, setIsSelecting] = useState<boolean>(false)
-    const [error, setError] = useState<string>("")
+    const [isSelecting, setIsSelecting] = useState(false)
+    const [error, setError] = useState("")
 
     const handleToEnterPress = (toDate: string) => {
       validateEnterPress(setToDate, setError, fromDate, toDate)

@@ -13,8 +13,8 @@ interface IProps {
 }
 
 export const Input = ({ value, onPressEnter, testId }: IProps) => {
-  const [isValid, setIsValid] = useState<boolean>(true)
-  const [isEmpty, setIsEmpty] = useState<boolean>(false)
+  const [isValid, setIsValid] = useState(true)
+  const [isEmpty, setIsEmpty] = useState(false)
   const [inputValue, setInputValue] = useState(value)
 
   useEffect(() => {
