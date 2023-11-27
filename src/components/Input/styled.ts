@@ -32,12 +32,13 @@ export const StyledInput = styled.input`
   padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xl};
   color: ${({ theme }) => theme.black};
   border-radius: ${({ theme }) => theme.borderRadius};
-  border: 1px solid ${({ theme }) => theme.lightGray};
+
+  border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.lightGray};
   &:focus {
-    outline: 1px solid ${({ theme }) => theme.dark};
+    outline: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.dark};
   }
 
   &[data-isvalid="false"] {
-    outline: 1px solid ${({ theme }) => theme.red};
+    outline: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.red};
   }
 `

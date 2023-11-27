@@ -14,7 +14,7 @@ const CalendarBody = ({
   holidays,
   includeWeekends,
   setSelectedDateValue,
-}: Omit<ICalendarProps, "inclideHolidays" | "year">) => (
+}: Omit<ICalendarProps, "inclideHolidays" | "year" | "renderDatesDropdown">) => (
   <>
     {dates.map(({ date, year, month, type }) => {
       const dateValue = addLeadingZeros(year, month, date)
