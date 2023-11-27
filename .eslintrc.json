@@ -20,12 +20,29 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react", "simple-import-sort", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "no-console": 0,
     "import/prefer-default-export": "off",
     "react/function-component-definition": "off",
-    "import/no-duplicates": "off"
+    "import/no-duplicates": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": "off"
   }
 }
