@@ -39,9 +39,16 @@ export interface ICalendarProps {
   handleMouseDown?: (dateValue: string) => MouseEventHandler<HTMLDivElement> | undefined
   fromDate?: string
   toDate?: string
+  isRenderingCalendar?: boolean
+  renderDatesDropdown: () => JSX.Element
 }
 
 export interface IDateProps {
   month: number
   year: number
+}
+export interface ITodo {
+  id: number
+  description: string
+  todoDate: string
 }

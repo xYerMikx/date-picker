@@ -18,21 +18,29 @@ export const Calendar = ({
   handleMouseUp,
   handleMouseDown,
   handleMouseEnter,
+  isRenderingCalendar,
+  renderDatesDropdown,
 }: ICalendarProps) => (
   <CalendarContainer>
-    <CalendarHeader startOfWeek={startOfWeek} />
-    <CalendarBody
-      startOfWeek={startOfWeek}
-      dates={dates}
-      holidays={holidays}
-      includeWeekends={includeWeekends}
-      selectedDate={selectedDate}
-      fromDate={fromDate}
-      toDate={toDate}
-      setSelectedDateValue={setSelectedDateValue}
-      handleMouseDown={handleMouseDown}
-      handleMouseUp={handleMouseUp}
-      handleMouseEnter={handleMouseEnter}
-    />
+    {isRenderingCalendar ? (
+      <>
+        <CalendarHeader startOfWeek={startOfWeek} />
+        <CalendarBody
+          startOfWeek={startOfWeek}
+          dates={dates}
+          holidays={holidays}
+          includeWeekends={includeWeekends}
+          selectedDate={selectedDate}
+          setSelectedDateValue={setSelectedDateValue}
+          fromDate={fromDate}
+          toDate={toDate}
+          handleMouseDown={handleMouseDown}
+          handleMouseUp={handleMouseUp}
+          handleMouseEnter={handleMouseEnter}
+        />
+      </>
+    ) : (
+      renderDatesDropdown && renderDatesDropdown()
+    )}
   </CalendarContainer>
 )

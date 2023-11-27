@@ -1,9 +1,18 @@
-import React, { ComponentType, Dispatch, SetStateAction, useState } from "react"
+import React, {
+  ComponentType,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react"
 import styled from "styled-components"
 
-import { Controls } from "@/components/Controls/Controls"
+import { DateDropwdown } from "@/components/DateDropdown/DateDropwdown"
 import { Input } from "@/components/Input/Input"
 import { IDateProps } from "@/types/interfaces"
+import { formatDate } from "@/utils/formatDate"
+import { currentDate } from "@/utils/getCurrentDate"
+import { addLeadingZeros } from "@/utils/leadingZeros"
 import { validateEnterPress } from "@/utils/validateInputDate"
 
 const Wrapper = styled.div`
@@ -13,6 +22,10 @@ const Paragraph = styled.p``
 
 const InputWrapper = styled.div``
 
+const CurrentDate = styled.p`
+  cursor: pointer;
+`
+
 export default function withRangeLogic<T>(
   Component: ComponentType<T>,
   fromDate: string,
@@ -21,10 +34,24 @@ export default function withRangeLogic<T>(
   setToDate: Dispatch<SetStateAction<string>>,
   currDate: IDateProps,
   setCurrDate: Dispatch<SetStateAction<IDateProps>>,
+  isRenderingCalendar: boolean,
+  setIsRenderingCalendar: Dispatch<SetStateAction<boolean>>,
+  inputDate: string,
+  setInputDate: Dispatch<SetStateAction<string>>,
 ) {
-  return (props: T) => {
+  return (props: Omit<T, "renderDatesDropdown">) => {
     const [isSelecting, setIsSelecting] = useState(false)
     const [error, setError] = useState("")
+    const [isChoosingYear, setIsChoosingYear] = useState(false)
+    const day = inputDate.slice(0, 2)
+
+    const handleDateClick = () => {
+      setIsRenderingCalendar(!isRenderingCalendar)
+    }
+
+    const handleChoosingYearClick = () => {
+      setIsChoosingYear(!isChoosingYear)
+    }
 
     const handleToEnterPress = (toDate: string) => {
       validateEnterPress(setToDate, setError, fromDate, toDate)
@@ -59,8 +86,21 @@ export default function withRangeLogic<T>(
 
     const setNewDate = (year: number, month: number) => {
       const newMonth = month < 10 ? `0${month}` : month
+      const newDate = addLeadingZeros(year, +newMonth, +day)
       setCurrDate({ month: +newMonth, year })
+      setInputDate(newDate)
     }
+
+    const renderDatesDropdown = (): JSX.Element => (
+      <DateDropwdown
+        setNewDate={setNewDate}
+        currentYear={currDate.year}
+        currentMonth={currDate.month}
+        handleClick={handleChoosingYearClick}
+        handleMonthClick={handleDateClick}
+        isChoosingYear={isChoosingYear}
+      />
+    )
 
     return (
       <Wrapper>
@@ -77,19 +117,16 @@ export default function withRangeLogic<T>(
           <Input testId="to-input" value={toDate} onPressEnter={handleToEnterPress} />
         </InputWrapper>
         {error && <Paragraph>{error}</Paragraph>}
-        <Controls
-          month={currDate.month}
-          year={currDate.year}
-          inputDate={`23.${currDate.month}.${currDate.year}`}
-          setNewDate={setNewDate}
-        />
+        <CurrentDate onClick={handleDateClick}>{formatDate(inputDate)}</CurrentDate>
         <Component
-          {...props}
+          {...(props as T)}
           handleMouseDown={handleMouseDown}
           handleMouseUp={handleMouseUp}
           handleMouseEnter={handleMouseEnter}
           fromDate={fromDate}
           toDate={toDate}
+          isRenderingCalendar={isRenderingCalendar}
+          renderDatesDropdown={renderDatesDropdown}
         />
       </Wrapper>
     )

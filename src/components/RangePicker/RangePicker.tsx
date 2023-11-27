@@ -6,6 +6,7 @@ import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary"
 import { StartDays } from "@/constants/startDays"
 import { darkTheme, lightTheme } from "@/constants/theme"
 import { Themes } from "@/constants/theme"
+import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { withLogic } from "@/hocs/withLogic"
 import withRangeLogic from "@/hocs/withRangeLogic"
 import { IDateProps } from "@/types/interfaces"
@@ -32,8 +33,10 @@ export const RangePicker = ({
 }: IDatePickerProps) => {
   const [fromDate, setFromDate] = useState(fromValue || "01.01.2023")
   const [toDate, setToDate] = useState(toValue || "05.01.2023")
+  const [isRenderingCalendar, setIsRenderingCalendar] = useState(true)
+  const [inputDate, setInputDate] = useState(currentDate)
   const currentTheme = theme === Themes.Light ? lightTheme : darkTheme
-  const { day, month, year } = getDateParts(currentDate)
+  const { day, month, year } = getDateParts(inputDate)
 
   const [currDate, setCurrDate] = useState<IDateProps>({
     month,
@@ -54,6 +57,10 @@ export const RangePicker = ({
     setToDate,
     currDate,
     setCurrDate,
+    isRenderingCalendar,
+    setIsRenderingCalendar,
+    inputDate,
+    setInputDate,
   )
 
   return (
