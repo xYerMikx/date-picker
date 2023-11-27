@@ -2,6 +2,8 @@ import { CellTypes } from "@/constants/cellTypes"
 import { StartDays } from "@/constants/startDays"
 import { DateCell } from "@/types/interfaces"
 
+const DAYS_IN_WEEK = 7
+
 export const getDaysInMonth = (year: number, month: number) =>
   new Date(year, month, 0).getDate()
 
@@ -33,7 +35,7 @@ export const getCalendarData = (year: number, month: number, startOfWeek: StartD
   const firstDayOfCurrMonth = new Date(year, prevMonth, 1).getDay()
   const diff =
     StartDays.Monday === startOfWeek && firstDayOfCurrMonth === 0
-      ? 6
+      ? DAYS_IN_WEEK - 1
       : firstDayOfCurrMonth - 1
   const prevMonthLastDay = new Date(year, prevMonth, 0).getDate()
   const startingValue =
@@ -51,7 +53,7 @@ export const getCalendarData = (year: number, month: number, startOfWeek: StartD
   // логика расчета следующих чисел заполнения
   const nextMonth = month + 1
   const lastDayOfCurrMonth = new Date(year, month, 0).getDay()
-  const nextDaysDiff = 7 - lastDayOfCurrMonth
+  const nextDaysDiff = DAYS_IN_WEEK - lastDayOfCurrMonth
   const nextDays = getMonthDays(
     year,
     nextMonth,

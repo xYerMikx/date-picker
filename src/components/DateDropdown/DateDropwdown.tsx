@@ -22,8 +22,8 @@ export const DateDropwdown = ({
   currentYear,
   setNewDate,
 }: IDateDropdownProps) => {
-  const [month, setMonth] = useState<number>(currentMonth)
-  const [year, setYear] = useState<number>(currentYear)
+  const [month, setMonth] = useState(currentMonth)
+  const [year, setYear] = useState(currentYear)
 
   const handleMonthClickChange = (e: MouseEvent<HTMLButtonElement>) => {
     const newMonth = shortMonths.indexOf(e.currentTarget.innerText) + 1
@@ -31,7 +31,7 @@ export const DateDropwdown = ({
     setNewDate(year, newMonth)
     handleMonthClick()
   }
-  const handleYearClickChange = () => (e: MouseEvent<HTMLButtonElement>) => {
+  const handleYearClickChange = (e: MouseEvent<HTMLButtonElement>) => {
     const newYear = +e.currentTarget.innerText
     handleClick()
     setYear(newYear)
@@ -67,7 +67,7 @@ export const DateDropwdown = ({
                 <Button
                   key={el}
                   data-current={isCurrentYear}
-                  onClick={handleYearClickChange()}
+                  onClick={handleYearClickChange}
                 >
                   {el}
                 </Button>

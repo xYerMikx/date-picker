@@ -33,7 +33,7 @@ export function withInputAndControlsLogic(
     >,
   ) => {
     const { day, month, year } = getDateParts(inputDate)
-    const [isChoosingYear, setIsChoosingYear] = useState<boolean>(false)
+    const [isChoosingYear, setIsChoosingYear] = useState(false)
 
     const handleDateClick = () => {
       setIsRenderingCalendar(!isRenderingCalendar)
