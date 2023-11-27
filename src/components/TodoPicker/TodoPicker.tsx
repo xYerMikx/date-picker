@@ -25,8 +25,8 @@ export const TodoPicker = ({
   includeHolidays = true,
   includeWeekends = true,
 }: ITodoPickerProps) => {
-  const [inputDate, setInputDate] = useState<string>(value || currentDate)
-  const [selectedDate, setSelectedDate] = useState<string>(value || inputDate)
+  const [inputDate, setInputDate] = useState(value || currentDate)
+  const [selectedDate, setSelectedDate] = useState(value || inputDate)
 
   const { day, month, year } = getDateParts(inputDate)
 

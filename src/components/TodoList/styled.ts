@@ -4,10 +4,10 @@ export const StyledInput = styled.input`
   border: none;
   padding: ${({ theme }) => theme.spacings.xs};
   border-radius: ${({ theme }) => theme.borderRadius};
-  border: 1px solid ${({ theme }) => theme.gray};
+  border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.gray};
 
   &:focus {
-    outline: 1px solid ${({ theme }) => theme.black};
+    outline: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.black};
   }
 `
 
@@ -24,7 +24,7 @@ export const Todo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid ${({ theme }) => theme.black};
+  border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.black};
   width: 300px;
   padding: ${({ theme }) => theme.spacings.xs};
   border-radius: ${({ theme }) => theme.borderRadius};

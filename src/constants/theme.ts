@@ -17,6 +17,7 @@ const commonTheme = {
     lg: "20px",
     xl: "25px",
   },
+  borderSize: "1px",
 }
 export const lightTheme = {
   ...commonTheme,

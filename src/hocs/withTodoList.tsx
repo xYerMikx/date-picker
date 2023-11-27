@@ -21,7 +21,7 @@ export function withTodoList(
   return (props: Omit<ITodoListProps, "dates" | "holidays" | "setSelectedDateValue">) => {
     const { includeHolidays, includeWeekends, startOfWeek, selectedDate } = props
     const [todos, setTodos] = useState<ITodo[]>(() => getTodos())
-    const [todoText, setTodoText] = useState<string>("")
+    const [todoText, setTodoText] = useState("")
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       setTodoText(e.target.value)
     }
