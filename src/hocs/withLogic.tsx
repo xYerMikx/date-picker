@@ -1,7 +1,7 @@
 import React, { ComponentType, useEffect, useState } from "react"
 
 import { getHolidays } from "@/api/getHolidays"
-import { DateCell, ICalendarProps, IHolidayData } from "@/types/interfaces"
+import { DateCell, ICalendarProps } from "@/types/interfaces"
 import { formatDateFromHolidays } from "@/utils/formatDate"
 import { getDateParts } from "@/utils/getDateParts"
 import { addLeadingZeros } from "@/utils/leadingZeros"

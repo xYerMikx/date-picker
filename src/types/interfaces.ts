@@ -34,8 +34,8 @@ export interface ICalendarProps {
   day?: number
   year?: number
   month?: number
-  renderInput?: () => JSX.Element
-  renderTodoList?: () => JSX.Element
+  isRenderingCalendar?: boolean
+  renderDatesDropdown: () => JSX.Element
 }
 export interface ITodo {
   id: number

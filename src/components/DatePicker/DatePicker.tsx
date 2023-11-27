@@ -29,6 +29,7 @@ export const DatePicker = ({
 }: IDatePickerProps) => {
   const [inputDate, setInputDate] = useState(value || currentDate)
   const [selectedDate, setSelectedDate] = useState(value || inputDate)
+  const [isRenderingCalendar, setIsRenderingCalendar] = useState(true)
   const currentTheme = theme === Themes.Light ? lightTheme : darkTheme
 
   const { day, month, year } = getDateParts(inputDate)
@@ -45,6 +46,8 @@ export const DatePicker = ({
     setInputDate,
     selectedDate,
     setSelectedDate,
+    isRenderingCalendar,
+    setIsRenderingCalendar,
   )
 
   return (

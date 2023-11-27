@@ -27,7 +27,7 @@ export const TodoPicker = ({
 }: ITodoPickerProps) => {
   const [inputDate, setInputDate] = useState(value || currentDate)
   const [selectedDate, setSelectedDate] = useState(value || inputDate)
-
+  const [isRenderingCalendar, setIsRenderingCalendar] = useState(true)
   const { day, month, year } = getDateParts(inputDate)
 
   const dates = useMemo(
@@ -42,6 +42,8 @@ export const TodoPicker = ({
     setInputDate,
     selectedDate,
     setSelectedDate,
+    isRenderingCalendar,
+    setIsRenderingCalendar,
   )
   const CalendarWithTodo = withTodoList(CalendarWithInputAndControls)
   return (

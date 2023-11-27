@@ -13,16 +13,24 @@ export const Calendar = ({
   holidays,
   setSelectedDateValue,
   includeWeekends,
+  isRenderingCalendar,
+  renderDatesDropdown,
 }: ICalendarProps) => (
   <CalendarContainer>
-    <CalendarHeader startOfWeek={startOfWeek} />
-    <CalendarBody
-      startOfWeek={startOfWeek}
-      dates={dates}
-      holidays={holidays}
-      includeWeekends={includeWeekends}
-      selectedDate={selectedDate}
-      setSelectedDateValue={setSelectedDateValue}
-    />
+    {isRenderingCalendar ? (
+      <>
+        <CalendarHeader startOfWeek={startOfWeek} />
+        <CalendarBody
+          startOfWeek={startOfWeek}
+          dates={dates}
+          holidays={holidays}
+          includeWeekends={includeWeekends}
+          selectedDate={selectedDate}
+          setSelectedDateValue={setSelectedDateValue}
+        />
+      </>
+    ) : (
+      renderDatesDropdown()
+    )}
   </CalendarContainer>
 )

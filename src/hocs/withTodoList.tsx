@@ -13,12 +13,13 @@ export interface ITodoListProps extends ICalendarProps {
   selectedDate: string
 }
 
-export function withTodoList(
-  Component: ComponentType<
-    Omit<ITodoListProps, "dates" | "holidays" | "setSelectedDateValue">
-  >,
-) {
-  return (props: Omit<ITodoListProps, "dates" | "holidays" | "setSelectedDateValue">) => {
+type TodoListType = Omit<
+  ITodoListProps,
+  "dates" | "holidays" | "setSelectedDateValue" | "renderDatesDropdown"
+>
+
+export function withTodoList(Component: ComponentType<TodoListType>) {
+  return (props: TodoListType) => {
     const { includeHolidays, includeWeekends, startOfWeek, selectedDate } = props
     const [todos, setTodos] = useState<ITodo[]>(() => getTodos())
     const [todoText, setTodoText] = useState("")
