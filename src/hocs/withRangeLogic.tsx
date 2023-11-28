@@ -1,17 +1,10 @@
-import React, {
-  ComponentType,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react"
+import React, { ComponentType, Dispatch, SetStateAction, useState } from "react"
 import styled from "styled-components"
 
-import { DateDropwdown } from "@/components/DateDropdown/DateDropwdown"
+import { DateDropwdown } from "@/components/DateDropdown/DateDropdown"
 import { Input } from "@/components/Input/Input"
 import { IDateProps } from "@/types/interfaces"
 import { formatDate } from "@/utils/formatDate"
-import { currentDate } from "@/utils/getCurrentDate"
 import { addLeadingZeros } from "@/utils/leadingZeros"
 import { validateEnterPress } from "@/utils/validateInputDate"
 

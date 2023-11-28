@@ -55,6 +55,7 @@ export const DatePicker = ({
     <ErrorBoundary>
       <ThemeProvider theme={currentTheme}>
         <CalendarWithInputAndControls
+          data-testid="date-picker"
           includeHolidays={includeHolidays}
           includeWeekends={includeWeekends}
           startOfWeek={startOfWeek}

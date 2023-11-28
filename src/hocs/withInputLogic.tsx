@@ -1,7 +1,7 @@
 import React, { ComponentType, Dispatch, SetStateAction, useState } from "react"
 import styled from "styled-components"
 
-import { DateDropwdown } from "@/components/DateDropdown/DateDropwdown"
+import { DateDropwdown } from "@/components/DateDropdown/DateDropdown"
 import { Input } from "@/components/Input/Input"
 import { CellTypes } from "@/constants/cellTypes"
 import { ICalendarProps } from "@/types/interfaces"
@@ -74,7 +74,9 @@ export function withInputAndControlsLogic(
     return (
       <Wrapper>
         <Input onPressEnter={handleEnterPress} value={selectedDate} />
-        <CurrentDate onClick={handleDateClick}>{formatDate(inputDate)}</CurrentDate>
+        <CurrentDate data-testid="current-date" onClick={handleDateClick}>
+          {formatDate(inputDate)}
+        </CurrentDate>
         <Component
           {...props}
           setSelectedDateValue={setSelectedDateValue}

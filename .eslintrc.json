@@ -43,6 +43,7 @@
         "tsx": "never"
       }
     ],
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "react/require-default-props": "off"
   }
 }
