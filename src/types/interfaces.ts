@@ -22,9 +22,9 @@ export interface IHolidayData {
 export interface ICalendarProps {
   startOfWeek: StartDays
   dates: DateCell[]
-  selectedDate: string
+  selectedDate?: string
   holidays: string[]
-  setSelectedDateValue: (
+  setSelectedDateValue?: (
     type: CellTypes,
     value: string,
   ) => MouseEventHandler<HTMLDivElement> | undefined
@@ -34,6 +34,21 @@ export interface ICalendarProps {
   day?: number
   year?: number
   month?: number
-  renderInput?: () => JSX.Element
-  renderTodoList?: () => JSX.Element
+  handleMouseUp?: (dateValue: string) => MouseEventHandler<HTMLDivElement> | undefined
+  handleMouseEnter?: (dateValue: string) => MouseEventHandler<HTMLDivElement> | undefined
+  handleMouseDown?: (dateValue: string) => MouseEventHandler<HTMLDivElement> | undefined
+  fromDate?: string
+  toDate?: string
+  isRenderingCalendar?: boolean
+  renderDatesDropdown: () => JSX.Element
+}
+
+export interface IDateProps {
+  month: number
+  year: number
+}
+export interface ITodo {
+  id: number
+  description: string
+  todoDate: string
 }

@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom"
 
-import { render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import userEvent, { UserEvent } from "@testing-library/user-event"
 import axios from "axios"
 import React from "react"
+import { act } from "react-dom/test-utils"
 
 import { months, shortMonths } from "@/constants/months"
 import { StartDays } from "@/constants/startDays"
@@ -84,9 +85,8 @@ describe("DatePicker tests", () => {
     expect(date).toBeInTheDocument()
   })
   it("should handle month change", async () => {
-    const monthToBeClicked = shortMonths[5]
+    const monthToBeClicked = shortMonths[3]
 
-    const input = screen.getByTestId("input")
     const date = screen.getByTestId("current-date")
 
     await user.click(date)
@@ -96,5 +96,7 @@ describe("DatePicker tests", () => {
 
     const monthCell = await screen.findByTestId(monthToBeClicked)
     await user.click(monthCell)
+
+    expect(dateDropdown).not.toBeInTheDocument()
   })
 })

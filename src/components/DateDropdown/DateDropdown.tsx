@@ -6,7 +6,6 @@ import { years } from "@/constants/years"
 import { Button, Container, StyledP, Wrapper, YearButton } from "./styled"
 
 export interface IDateDropdownProps {
-  isChoosingMonth: boolean
   isChoosingYear: boolean
   handleClick: VoidFunction
   handleMonthClick: VoidFunction
@@ -16,7 +15,6 @@ export interface IDateDropdownProps {
 }
 
 export const DateDropwdown = ({
-  isChoosingMonth,
   isChoosingYear,
   handleClick,
   handleMonthClick,
@@ -33,14 +31,15 @@ export const DateDropwdown = ({
     setMonth(newMonth)
     setNewDate(year, newMonth)
   }
-  const handleYearClickChange = () => (e: MouseEvent<HTMLButtonElement>) => {
+
+  const handleYearClickChange = (e: MouseEvent<HTMLButtonElement>) => {
     const newYear = +e.currentTarget.innerText
     handleClick()
     setYear(newYear)
   }
   return (
-    <Wrapper data-testid="dropdown-date" data-isseen={isChoosingMonth || isChoosingYear}>
-      {isChoosingMonth && (
+    <Wrapper data-testid="dropdown-date">
+      {!isChoosingYear ? (
         <>
           <YearButton data-testid="change-year-button" onClick={handleClick}>
             {year}
@@ -62,8 +61,7 @@ export const DateDropwdown = ({
             })}
           </Container>
         </>
-      )}
-      {isChoosingYear && (
+      ) : (
         <>
           <StyledP>Choosing year</StyledP>
           <Container>
@@ -74,7 +72,7 @@ export const DateDropwdown = ({
                   key={el}
                   data-testid={el}
                   data-current={isCurrentYear}
-                  onClick={handleYearClickChange()}
+                  onClick={handleYearClickChange}
                 >
                   {el}
                 </Button>
