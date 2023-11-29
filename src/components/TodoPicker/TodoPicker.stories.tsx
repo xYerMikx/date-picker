@@ -14,5 +14,7 @@ export const DefaultDatePicker = {
     startOfWeek: StartDays.Monday,
     includeHolidays: true,
     includeWeekends: true,
+    min: "10.12.2022",
+    max: "10.02.2024",
   },
 }

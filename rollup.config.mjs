@@ -7,6 +7,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external"
 import { dts } from "rollup-plugin-dts"
 import alias from "@rollup/plugin-alias"
 import packageJson from "./package.json" assert { type: "json" }
+import replace from "@rollup/plugin-replace"
 
 export default [
   {
@@ -47,6 +48,13 @@ export default [
         exclude: "node_modules/**",
         presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
         plugins: ["styled-components"],
+      }),
+      replace({
+        preventAssignment: true,
+        values: {
+          "process.env.HOLIDAY_API_URL": JSON.stringify(process.env.HOLIDAY_API_URL),
+          "process.env.HOLIDAY_API_KEY": JSON.stringify(process.env.HOLIDAY_API_KEY),
+        },
       }),
       terser(),
     ],

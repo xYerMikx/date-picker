@@ -4,17 +4,19 @@ export const Wrapper = styled.div`
   background-color: white;
   border-radius: ${({ theme }) => theme.borderRadius};
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.bgColor};
-  width: 250px;
+  width: 350px;
   padding: ${({ theme }) => theme.spacings.lg};
 `
 
-export const StyledP = styled.p``
+export const StyledP = styled.p`
+  margin-bottom: ${({ theme }) => theme.spacings.xl};
+`
 
 export const Button = styled.button`
   background: none;
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.blue};
   border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
@@ -37,6 +39,8 @@ export const YearButton = styled.button`
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.blue};
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: all 0.2s linear;
+  padding: ${({ theme }) => theme.spacings.xs} ${({ theme }) => theme.spacings.md};
+  margin-bottom: ${({ theme }) => theme.spacings.md};
 
   &:hover {
     background-color: ${({ theme }) => theme.blue};
@@ -48,4 +52,5 @@ export const Container = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacings.sm};
   flex-wrap: wrap;
+  justify-content: space-evenly;
 `

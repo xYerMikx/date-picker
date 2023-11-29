@@ -9,7 +9,7 @@ import { addLeadingZeros } from "@/utils/leadingZeros"
 
 import { Cell } from "./styled"
 
-const CalendarBody = ({
+export const CalendarBody = ({
   dates,
   selectedDate,
   holidays,
@@ -54,5 +54,3 @@ const CalendarBody = ({
     })}
   </>
 )
-
-export default CalendarBody

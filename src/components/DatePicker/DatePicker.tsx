@@ -8,6 +8,7 @@ import { darkTheme, lightTheme } from "@/constants/theme"
 import { Themes } from "@/constants/theme"
 import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { withLogic } from "@/hocs/withLogic"
+import { GlobalStyles } from "@/styles/globalStyles"
 import { currentDate } from "@/utils/getCurrentDate"
 import { getDateParts } from "@/utils/getDateParts"
 import { getCalendarData } from "@/utils/getMonthDays"
@@ -18,6 +19,8 @@ export interface IDatePickerProps {
   includeWeekends: boolean
   value: string
   theme: Themes
+  min?: string
+  max?: string
 }
 
 export const DatePicker = ({
@@ -26,6 +29,8 @@ export const DatePicker = ({
   includeHolidays,
   includeWeekends,
   theme = Themes.Dark,
+  min,
+  max,
 }: IDatePickerProps) => {
   const [inputDate, setInputDate] = useState(value || currentDate)
   const [selectedDate, setSelectedDate] = useState(value || inputDate)
@@ -49,11 +54,14 @@ export const DatePicker = ({
     setSelectedDate,
     isRenderingCalendar,
     setIsRenderingCalendar,
+    max,
+    min,
   )
 
   return (
     <ErrorBoundary>
       <ThemeProvider theme={currentTheme}>
+        <GlobalStyles />
         <CalendarWithInputAndControls
           data-testid="date-picker"
           includeHolidays={includeHolidays}

@@ -5,6 +5,7 @@ export const StyledInput = styled.input`
   padding: ${({ theme }) => theme.spacings.xs};
   border-radius: ${({ theme }) => theme.borderRadius};
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.gray};
+  margin-bottom: ${({ theme }) => theme.spacings.md};
 
   &:focus {
     outline: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.black};
@@ -29,7 +30,9 @@ export const Todo = styled.div`
   padding: ${({ theme }) => theme.spacings.xs};
   border-radius: ${({ theme }) => theme.borderRadius};
 `
-export const TodoDesc = styled.p``
+export const TodoDesc = styled.p`
+  padding: ${({ theme }) => theme.spacings.xs} ${({ theme }) => theme.spacings.md};
+`
 export const CloseButton = styled.button`
   font-size: ${({ theme }) => theme.fontSize.lg};
   cursor: pointer;
@@ -40,4 +43,6 @@ export const CloseButton = styled.button`
     color: ${({ theme }) => theme.red};
   }
 `
-export const TodoDate = styled.p``
+export const TodoDate = styled.p`
+  margin-bottom: ${({ theme }) => theme.spacings.xs};
+`
