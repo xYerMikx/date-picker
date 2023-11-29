@@ -1,14 +1,14 @@
-const resolve = require("@rollup/plugin-node-resolve")
-const commonjs = require("@rollup/plugin-commonjs")
-const typescript = require("@rollup/plugin-typescript")
-const babel = require("@rollup/plugin-babel")
-const { terser } = require("rollup-plugin-terser")
-const peerDepsExternal = require("rollup-plugin-peer-deps-external")
-const { dts } = require("rollup-plugin-dts")
-const alias = require("@rollup/plugin-alias")
-const packageJson = require("./package.json")
+import resolve from "@rollup/plugin-node-resolve"
+import commonjs from "@rollup/plugin-commonjs"
+import typescript from "@rollup/plugin-typescript"
+import babel from "@rollup/plugin-babel"
+import { terser } from "rollup-plugin-terser"
+import peerDepsExternal from "rollup-plugin-peer-deps-external"
+import { dts } from "rollup-plugin-dts"
+import alias from "@rollup/plugin-alias"
+import packageJson from "./package.json" assert { type: "json" }
 
-module.exports = [
+export default [
   {
     input: "./src/index.ts",
     output: [
@@ -26,18 +26,23 @@ module.exports = [
     ],
     plugins: [
       peerDepsExternal(),
+      resolve({
+        extensions: [".json", ".mjs", ".ts", ".tsx"],
+        browser: true,
+      }),
       alias({
         entries: [
-          { find: "@/constants/startDays", replacement: "./src/constants/startDays" },
+          {
+            find: "@/components/DatePicker/DatePicker",
+            replacement: "./src/components/DatePicker/DatePicker.tsx",
+          },
         ],
-      }),
-      resolve({
-        extensions: [".mjs", ".json", ".ts", ".tsx"],
       }),
       typescript({ tsconfig: "./tsconfig.json" }),
       babel({
+        babelHelpers: "runtime",
         exclude: "node_modules/**",
-        presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
+        presets: ["@babel/preset-typescript", "@babel/preset-react"],
         plugins: ["styled-components"],
       }),
       commonjs(),
