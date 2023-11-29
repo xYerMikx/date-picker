@@ -1,4 +1,4 @@
-import resolve from "@rollup/plugin-node-resolve"
+import { nodeResolve } from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import typescript from "@rollup/plugin-typescript"
 import babel from "@rollup/plugin-babel"
@@ -22,37 +22,49 @@ export default [
         file: packageJson.module,
         format: "esm",
         sourcemap: true,
+        exports: "named",
       },
     ],
     plugins: [
       peerDepsExternal(),
-      resolve({
-        extensions: [".json", ".mjs", ".ts", ".tsx"],
+      nodeResolve({
+        jsnext: true,
+        main: true,
         browser: true,
+        extensions: [".ts", ".tsx", ".json", ".js", ".mjs"],
       }),
       alias({
         entries: [
           {
-            find: "@/components/DatePicker/DatePicker",
-            replacement: "./src/components/DatePicker/DatePicker.tsx",
+            find: "@/",
+            replacement: "./src/",
           },
         ],
       }),
+      commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       babel({
-        babelHelpers: "runtime",
         exclude: "node_modules/**",
-        presets: ["@babel/preset-typescript", "@babel/preset-react"],
+        presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
         plugins: ["styled-components"],
       }),
-      commonjs(),
       terser(),
     ],
   },
   {
     input: "./src/index.ts",
-    output: [{ file: "dist/types.d.ts", format: "esm" }],
+    output: [{ file: "dist/types.d.ts", format: "es" }],
     external: [/\.css$/],
-    plugins: [dts()],
+    plugins: [
+      alias({
+        entries: [
+          {
+            find: "@/",
+            replacement: "./src/",
+          },
+        ],
+      }),
+      dts(),
+    ],
   },
 ]
