@@ -4,17 +4,18 @@ import styled from "styled-components"
 import { DateDropwdown } from "@/components/DateDropdown/DateDropdown"
 import { Input } from "@/components/Input/Input"
 import { CellTypes } from "@/constants/cellTypes"
+import { CurrentDate, Wrapper } from "@/styles/common"
 import { ICalendarProps } from "@/types/interfaces"
-import { formatDate } from "@/utils/formatDate"
+import { formatDate, returnFormatedDate } from "@/utils/formatDate"
 import { getDateParts } from "@/utils/getDateParts"
+import { isDateWithinMinMaxRange } from "@/utils/isDateInRange"
 import { addLeadingZeros } from "@/utils/leadingZeros"
 import { updateDate } from "@/utils/updateDate"
 
-const Wrapper = styled.div`
-  width: 350px;
-`
-const CurrentDate = styled.p`
-  cursor: pointer;
+const ErrorMsg = styled.p`
+  margin-top: ${({ theme }) => theme.spacings.xs};
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  color: ${({ theme }) => theme.red};
 `
 
 export function withInputAndControlsLogic(
@@ -25,6 +26,8 @@ export function withInputAndControlsLogic(
   setSelectedDate: Dispatch<SetStateAction<string>>,
   isRenderingCalendar: boolean,
   setIsRenderingCalendar: Dispatch<SetStateAction<boolean>>,
+  max: string | undefined,
+  min: string | undefined,
 ) {
   return (
     props: Omit<
@@ -34,6 +37,7 @@ export function withInputAndControlsLogic(
   ) => {
     const { day, month, year } = getDateParts(inputDate)
     const [isChoosingYear, setIsChoosingYear] = useState(false)
+    const [isDateValid, setIsDateValid] = useState(true)
 
     const handleDateClick = () => {
       setIsRenderingCalendar(!isRenderingCalendar)
@@ -44,12 +48,22 @@ export function withInputAndControlsLogic(
     }
 
     const handleEnterPress = (inputValue: string) => {
+      if (!isDateWithinMinMaxRange(inputValue, min, max)) {
+        setIsDateValid(false)
+        return
+      }
+      setIsDateValid(true)
       setSelectedDate(inputValue)
       setInputDate(inputValue)
     }
 
     const setSelectedDateValue = (type: CellTypes, value: string) => () => {
       const newDate = updateDate(value, type)
+      if (!isDateWithinMinMaxRange(newDate, min, max)) {
+        setIsDateValid(false)
+        return
+      }
+      setIsDateValid(true)
       setSelectedDate(newDate)
       setInputDate(newDate)
     }
@@ -74,6 +88,11 @@ export function withInputAndControlsLogic(
     return (
       <Wrapper>
         <Input onPressEnter={handleEnterPress} value={selectedDate} />
+        {!isDateValid && (
+          <ErrorMsg>
+            Your date is either more than {max} or less than {min}
+          </ErrorMsg>
+        )}
         <CurrentDate data-testid="current-date" onClick={handleDateClick}>
           {formatDate(inputDate)}
         </CurrentDate>

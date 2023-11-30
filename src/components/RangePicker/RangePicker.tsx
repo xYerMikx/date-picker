@@ -6,9 +6,9 @@ import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary"
 import { StartDays } from "@/constants/startDays"
 import { darkTheme, lightTheme } from "@/constants/theme"
 import { Themes } from "@/constants/theme"
-import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { withLogic } from "@/hocs/withLogic"
-import withRangeLogic from "@/hocs/withRangeLogic"
+import { withRangeLogic } from "@/hocs/withRangeLogic"
+import { GlobalStyles } from "@/styles/globalStyles"
 import { IDateProps } from "@/types/interfaces"
 import { currentDate } from "@/utils/getCurrentDate"
 import { getDateParts } from "@/utils/getDateParts"
@@ -66,6 +66,7 @@ export const RangePicker = ({
   return (
     <ErrorBoundary>
       <ThemeProvider theme={currentTheme}>
+        <GlobalStyles />
         <CalendarWithRangePicker
           includeHolidays={includeHolidays}
           includeWeekends={includeWeekends}

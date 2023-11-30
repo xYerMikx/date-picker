@@ -6,6 +6,7 @@ import { lightTheme } from "@/constants/theme"
 import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { withLogic } from "@/hocs/withLogic"
 import { withTodoList } from "@/hocs/withTodoList"
+import { GlobalStyles } from "@/styles/globalStyles"
 import { currentDate } from "@/utils/getCurrentDate"
 import { getDateParts } from "@/utils/getDateParts"
 import { getCalendarData } from "@/utils/getMonthDays"
@@ -18,12 +19,16 @@ export interface ITodoPickerProps {
   startOfWeek: StartDays
   includeHolidays: boolean
   includeWeekends: boolean
+  min?: string
+  max?: string
 }
 export const TodoPicker = ({
   value,
   startOfWeek = StartDays.Monday,
   includeHolidays = true,
   includeWeekends = true,
+  min,
+  max,
 }: ITodoPickerProps) => {
   const [inputDate, setInputDate] = useState(value || currentDate)
   const [selectedDate, setSelectedDate] = useState(value || inputDate)
@@ -44,12 +49,15 @@ export const TodoPicker = ({
     setSelectedDate,
     isRenderingCalendar,
     setIsRenderingCalendar,
+    max,
+    min,
   )
   const CalendarWithTodo = withTodoList(CalendarWithInputAndControls)
   return (
     <div>
       <ErrorBoundary>
         <ThemeProvider theme={lightTheme}>
+          <GlobalStyles />
           <CalendarWithTodo
             includeHolidays={includeHolidays}
             includeWeekends={includeWeekends}

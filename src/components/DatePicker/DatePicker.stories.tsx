@@ -15,5 +15,7 @@ export const DefaultDatePicker = {
     includeWeekends: true,
     includeHolidays: true,
     theme: Themes.Dark,
+    max: "10.02.2024",
+    min: "10.02.2022",
   },
 }

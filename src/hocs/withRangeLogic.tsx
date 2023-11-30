@@ -3,23 +3,18 @@ import styled from "styled-components"
 
 import { DateDropwdown } from "@/components/DateDropdown/DateDropdown"
 import { Input } from "@/components/Input/Input"
+import { CurrentDate, Wrapper } from "@/styles/common"
 import { IDateProps } from "@/types/interfaces"
 import { formatDate } from "@/utils/formatDate"
 import { addLeadingZeros } from "@/utils/leadingZeros"
 import { validateEnterPress } from "@/utils/validateInputDate"
 
-const Wrapper = styled.div`
-  width: 350px;
+const Paragraph = styled.p`
+  margin: ${({ theme }) => theme.spacings.md} 0;
 `
-const Paragraph = styled.p``
-
 const InputWrapper = styled.div``
 
-const CurrentDate = styled.p`
-  cursor: pointer;
-`
-
-export default function withRangeLogic<T>(
+export function withRangeLogic<T>(
   Component: ComponentType<T>,
   fromDate: string,
   toDate: string,

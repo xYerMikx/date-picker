@@ -1,3 +1,5 @@
+import { returnFormatedDate } from "./formatDate"
+
 export const isDateInRange = (currentDate: string, fromDate: string, toDate: string) => {
   const [currentDay, currentMonth, currentYear] = currentDate.split(".").map(Number)
   const [fromDay, fromMonth, fromYear] = fromDate.split(".").map(Number)
@@ -8,4 +10,17 @@ export const isDateInRange = (currentDate: string, fromDate: string, toDate: str
   const to = new Date(toYear, toMonth - 1, toDay)
 
   return current > from && current < to
+}
+
+export const isDateWithinMinMaxRange = (
+  date: string,
+  min?: string,
+  max?: string,
+): boolean => {
+  const [formattedDate, formattedMin, formattedMax] = returnFormatedDate(
+    date,
+    min || "",
+    max || "",
+  )
+  return formattedDate <= formattedMax && formattedDate >= formattedMin
 }

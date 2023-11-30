@@ -12,6 +12,7 @@ export const Container = styled.div`
 `
 
 export const InputContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   & > svg {
@@ -20,15 +21,14 @@ export const InputContainer = styled.div`
     cursor: pointer;
   }
   & > svg:first-child {
-    left: 15px;
+    left: 5px;
   }
   & > svg:last-child {
-    left: 180px;
+    left: 170px;
   }
 `
 
 export const StyledInput = styled.input`
-  position: relative;
   padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xl};
   color: ${({ theme }) => theme.black};
   border-radius: ${({ theme }) => theme.borderRadius};

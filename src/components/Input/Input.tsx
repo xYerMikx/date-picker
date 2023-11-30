@@ -17,12 +17,8 @@ export const Input = ({ value, onPressEnter, testId }: IProps) => {
   const [isEmpty, setIsEmpty] = useState(false)
   const [inputValue, setInputValue] = useState(value)
 
-  useEffect(() => {
-    setInputValue(value)
-  }, [value])
-
   const inputRef = useRef<HTMLInputElement>(null)
-  const inputValueRef = useRef<string>(value)
+  const inputValueRef = useRef(value)
   const changeInputDate = (e: ChangeEvent<HTMLInputElement>) => {
     const valueFromInput = e.target.value
     setInputValue(valueFromInput)
