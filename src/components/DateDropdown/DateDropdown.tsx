@@ -65,16 +65,16 @@ export const DateDropwdown = ({
         <>
           <StyledP>Choosing year</StyledP>
           <Container>
-            {years.map((el) => {
-              const isCurrentYear = el === currentYear
+            {years.map((year) => {
+              const isCurrentYear = year === currentYear
               return (
                 <Button
-                  key={el}
-                  data-testid={el}
+                  key={year}
+                  data-testid={year}
                   data-current={isCurrentYear}
                   onClick={handleYearClickChange}
                 >
-                  {el}
+                  {year}
                 </Button>
               )
             })}
