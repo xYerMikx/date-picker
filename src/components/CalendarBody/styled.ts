@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components"
 
-const commonStyles = css`
+const selectedStyles = css`
+  background-color: ${({ theme }) => theme.blue};
+  color: ${({ theme }) => theme.white};
+`
+
+export const Cell = styled.div`
   user-select: none;
   width: 50px;
   text-align: center;
@@ -8,15 +13,6 @@ const commonStyles = css`
   border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   transition: all 0.3s linear;
-`
-
-const selectedStyles = css`
-  background-color: ${({ theme }) => theme.blue};
-  color: ${({ theme }) => theme.white};
-`
-
-export const Cell = styled.div`
-  ${commonStyles}
 
   &[data-isholiday="true"] {
     color: ${({ theme }) => theme.green};
