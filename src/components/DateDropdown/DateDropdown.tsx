@@ -1,4 +1,4 @@
-import React, { Dispatch, MouseEvent, SetStateAction, useState } from "react"
+import React, { MouseEvent, useState } from "react"
 
 import { shortMonths } from "@/constants/months"
 import { years } from "@/constants/years"
@@ -27,27 +27,31 @@ export const DateDropwdown = ({
 
   const handleMonthClickChange = (e: MouseEvent<HTMLButtonElement>) => {
     const newMonth = shortMonths.indexOf(e.currentTarget.innerText) + 1
+    handleMonthClick()
     setMonth(newMonth)
     setNewDate(year, newMonth)
-    handleMonthClick()
   }
+
   const handleYearClickChange = (e: MouseEvent<HTMLButtonElement>) => {
     const newYear = +e.currentTarget.innerText
     handleClick()
     setYear(newYear)
   }
   return (
-    <Wrapper>
+    <Wrapper data-testid="dropdown-date">
       {!isChoosingYear ? (
         <>
-          <YearButton onClick={handleClick}>{year}</YearButton>
+          <YearButton data-testid="change-year-button" onClick={handleClick}>
+            {year}
+          </YearButton>
           <StyledP>Choose month</StyledP>
-          <Container>
+          <Container data-testid="dates-container">
             {shortMonths.map((shortMonth) => {
               const isCurrentMonth = shortMonth === shortMonths[month - 1]
               return (
                 <Button
                   key={shortMonth}
+                  data-testid={shortMonth}
                   data-current={isCurrentMonth}
                   onClick={handleMonthClickChange}
                 >
@@ -61,15 +65,16 @@ export const DateDropwdown = ({
         <>
           <StyledP>Choosing year</StyledP>
           <Container>
-            {years.map((el) => {
-              const isCurrentYear = el === currentYear
+            {years.map((year) => {
+              const isCurrentYear = year === currentYear
               return (
                 <Button
-                  key={el}
+                  key={year}
+                  data-testid={year}
                   data-current={isCurrentYear}
                   onClick={handleYearClickChange}
                 >
-                  {el}
+                  {year}
                 </Button>
               )
             })}

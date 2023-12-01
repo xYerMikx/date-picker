@@ -1,21 +1,20 @@
 import { StartDays } from "@/constants/startDays"
-import { Themes } from "@/constants/theme"
 
-import { DatePicker } from "./DatePicker"
+import { TodoPicker } from "./TodoPicker"
 
 export default {
-  title: "DatePicker",
-  component: DatePicker,
+  title: "TodoPicker",
+  component: TodoPicker,
   tags: ["autodocs"],
 }
 
 export const DefaultDatePicker = {
   args: {
+    value: "23.11.2023",
     startOfWeek: StartDays.Monday,
-    includeWeekends: true,
     includeHolidays: true,
-    theme: Themes.Dark,
+    includeWeekends: true,
+    min: "10.12.2022",
     max: "10.02.2024",
-    min: "10.02.2022",
   },
 }

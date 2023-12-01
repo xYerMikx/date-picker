@@ -3,11 +3,11 @@
     "jsx": "react",
     "target": "ESNext",
     "outDir": "./dist",
-    "module": "NodeNext",
+    "module": "ESNext",
     "sourceMap": true,
     "esModuleInterop": true,
     "types": ["node"],
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Node",
     "forceConsistentCasingInFileNames": true,
     "lib": ["ESNext", "DOM.Iterable", "DOM"],
     "strict": true,
@@ -20,6 +20,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "rollup.config.mjs"],
+  "include": ["src/**/*", "rollup.config.mjs", "jest.config.ts"],
   "exclude": ["node_modules", "dist", "storybook-static"]
 }

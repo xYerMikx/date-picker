@@ -1,6 +1,14 @@
 import React, { Component, ErrorInfo } from "react"
+import { ReactNode } from "react"
 
-import { IEBProps, IEBState } from "./interfaces"
+interface IEBProps {
+  children?: ReactNode
+}
+
+interface IEBState {
+  hasError: boolean
+  error: Error | undefined
+}
 
 export class ErrorBoundary extends Component<IEBProps, IEBState> {
   constructor(props: IEBProps) {

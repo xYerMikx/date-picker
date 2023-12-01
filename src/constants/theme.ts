@@ -1,7 +1,9 @@
 const commonTheme = {
   fontSize: {
+    xs: "11px",
     sm: "13px",
     md: "15px",
+    lg: "20px",
   },
   fontWeight: {
     bold: 700,
@@ -10,11 +12,13 @@ const commonTheme = {
   borderRadius: "8px",
   bgColor: "#F1F1F1",
   spacings: {
+    xs: "5px",
     sm: "10px",
     md: "15px",
     lg: "20px",
     xl: "25px",
   },
+  lightBlue: "#2F80ED1A",
   borderSize: "1px",
 }
 export const lightTheme = {

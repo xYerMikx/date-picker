@@ -1,43 +1,38 @@
 import React, { useMemo, useState } from "react"
 import { ThemeProvider } from "styled-components"
 
-import { Calendar } from "@/components/Calendar/Calendar"
-import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary"
 import { StartDays } from "@/constants/startDays"
-import { darkTheme, lightTheme } from "@/constants/theme"
-import { Themes } from "@/constants/theme"
+import { lightTheme } from "@/constants/theme"
 import { withInputAndControlsLogic } from "@/hocs/withInputLogic"
 import { withLogic } from "@/hocs/withLogic"
+import { withTodoList } from "@/hocs/withTodoList"
 import { GlobalStyles } from "@/styles/globalStyles"
 import { currentDate } from "@/utils/getCurrentDate"
 import { getDateParts } from "@/utils/getDateParts"
 import { getCalendarData } from "@/utils/getMonthDays"
 
-export interface IDatePickerProps {
+import { Calendar } from "../Calendar/Calendar"
+import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary"
+
+export interface ITodoPickerProps {
+  value: string
   startOfWeek: StartDays
   includeHolidays: boolean
   includeWeekends: boolean
-  value: string
-  theme: Themes
   min?: string
   max?: string
 }
-
-export const DatePicker = ({
-  startOfWeek = StartDays.Monday,
+export const TodoPicker = ({
   value,
-  includeHolidays,
-  includeWeekends,
-  theme = Themes.Dark,
+  startOfWeek = StartDays.Monday,
+  includeHolidays = true,
+  includeWeekends = true,
   min = "",
   max = "",
-}: IDatePickerProps) => {
+}: ITodoPickerProps) => {
   const [inputDate, setInputDate] = useState(value || currentDate)
   const [selectedDate, setSelectedDate] = useState(value || inputDate)
   const [isRenderingCalendar, setIsRenderingCalendar] = useState(true)
-
-  const currentTheme = theme === Themes.Light ? lightTheme : darkTheme
-
   const { day, month, year } = getDateParts(inputDate)
 
   const dates = useMemo(
@@ -57,19 +52,20 @@ export const DatePicker = ({
     max,
     min,
   )
-
+  const CalendarWithTodo = withTodoList(CalendarWithInputAndControls)
   return (
-    <ErrorBoundary>
-      <ThemeProvider theme={currentTheme}>
-        <GlobalStyles />
-        <CalendarWithInputAndControls
-          data-testid="date-picker"
-          includeHolidays={includeHolidays}
-          includeWeekends={includeWeekends}
-          startOfWeek={startOfWeek}
-          selectedDate={selectedDate}
-        />
-      </ThemeProvider>
-    </ErrorBoundary>
+    <div>
+      <ErrorBoundary>
+        <ThemeProvider theme={lightTheme}>
+          <GlobalStyles />
+          <CalendarWithTodo
+            includeHolidays={includeHolidays}
+            includeWeekends={includeWeekends}
+            startOfWeek={startOfWeek}
+            selectedDate={selectedDate}
+          />
+        </ThemeProvider>
+      </ErrorBoundary>
+    </div>
   )
 }

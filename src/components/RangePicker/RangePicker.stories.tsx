@@ -1,11 +1,11 @@
 import { StartDays } from "@/constants/startDays"
 import { Themes } from "@/constants/theme"
 
-import { DatePicker } from "./DatePicker"
+import { RangePicker } from "./RangePicker"
 
 export default {
-  title: "DatePicker",
-  component: DatePicker,
+  title: "RangePicker",
+  component: RangePicker,
   tags: ["autodocs"],
 }
 
@@ -14,8 +14,8 @@ export const DefaultDatePicker = {
     startOfWeek: StartDays.Monday,
     includeWeekends: true,
     includeHolidays: true,
-    theme: Themes.Dark,
-    max: "10.02.2024",
-    min: "10.02.2022",
+    theme: Themes.Light,
+    fromValue: "21.11.2023",
+    toValue: "25.11.2023",
   },
 }

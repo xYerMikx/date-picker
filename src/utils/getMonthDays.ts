@@ -53,6 +53,7 @@ export const getCalendarData = (year: number, month: number, startOfWeek: StartD
   // логика расчета следующих чисел заполнения
   const nextMonth = month + 1
   const lastDayOfCurrMonth = new Date(year, month, 0).getDay()
+
   const nextDaysDiff = DAYS_IN_WEEK - lastDayOfCurrMonth
   const nextDays = getMonthDays(
     year,
