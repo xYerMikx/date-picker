@@ -17,10 +17,9 @@ export const isDateWithinMinMaxRange = (
   min?: string,
   max?: string,
 ): boolean => {
-  const [formattedDate, formattedMin, formattedMax] = returnFormatedDate(
-    date,
-    min || "",
-    max || "",
-  )
+  if (!min || !max) {
+    return true
+  }
+  const [formattedDate, formattedMin, formattedMax] = returnFormatedDate(date, min, max)
   return formattedDate <= formattedMax && formattedDate >= formattedMin
 }

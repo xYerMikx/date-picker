@@ -27,8 +27,8 @@ export const TodoPicker = ({
   startOfWeek = StartDays.Monday,
   includeHolidays = true,
   includeWeekends = true,
-  min,
-  max,
+  min = "",
+  max = "",
 }: ITodoPickerProps) => {
   const [inputDate, setInputDate] = useState(value || currentDate)
   const [selectedDate, setSelectedDate] = useState(value || inputDate)
